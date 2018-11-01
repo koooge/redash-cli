@@ -33,7 +33,7 @@ func NewCmdRoot() *cobra.Command {
 	}
 
 	cmd.PersistentFlags().StringVar(&configFile, "config", "", "config file (default \"$HOME/.config/redash-cli/config.yaml\")")
-	cmd.PersistentFlags().StringVar(&profile, "profile", "default", "profile (default \"default\")")
+	cmd.PersistentFlags().StringVar(&profile, "profile", "default", "profile")
 	cmd.PersistentFlags().StringVar(&endpointUrl, "endpoint-url", "", "endpoint url")
 	cmd.PersistentFlags().StringVar(&apiKey, "apikey", "", "api key")
 
