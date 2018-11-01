@@ -53,6 +53,8 @@ func init() {
 	rootCmd = NewCmdRoot()
 	rootCmd.AddCommand(NewCmdConfig())
 
+	rootCmd.AddCommand(NewCmdGetDataSourceList())
+	rootCmd.AddCommand(NewCmdGetDataSource())
 	rootCmd.AddCommand(NewCmdGetQueryList())
 	rootCmd.AddCommand(NewCmdGetQuery())
 	rootCmd.AddCommand(NewCmdGetQueryResult())
