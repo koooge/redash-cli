@@ -62,6 +62,8 @@ func init() {
 	rootCmd.AddCommand(NewCmdGetUser())
 	rootCmd.AddCommand(NewCmdGetGroupList())
 	rootCmd.AddCommand(NewCmdGetGroup())
+	rootCmd.AddCommand(NewCmdGetAlertList())
+	rootCmd.AddCommand(NewCmdGetAlert())
 
 	cobra.OnInitialize(initConfig)
 	cobra.OnInitialize(initClient)
