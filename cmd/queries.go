@@ -38,7 +38,7 @@ func NewCmdGetQuery() *cobra.Command {
 		},
 	}
 
-	cmd.Flags().IntVar(&queryId, "queryId", 0, "query id")
+	cmd.Flags().IntVar(&queryId, "query-id", 0, "query id")
 
 	return cmd
 }
