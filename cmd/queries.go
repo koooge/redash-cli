@@ -5,7 +5,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func NewCmdQueryList() *cobra.Command {
+func NewCmdGetQueryList() *cobra.Command {
 	var cmd = &cobra.Command{
 		Use:   "get-querylist",
 		Short: "get-querylist",
@@ -21,7 +21,7 @@ func NewCmdQueryList() *cobra.Command {
 	return cmd
 }
 
-func NewCmdQuery() *cobra.Command {
+func NewCmdGetQuery() *cobra.Command {
 	var queryId int
 	var cmd = &cobra.Command{
 		Use:   "get-query",

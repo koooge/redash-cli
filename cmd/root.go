@@ -53,8 +53,8 @@ func init() {
 	rootCmd = NewCmdRoot()
 	rootCmd.AddCommand(NewCmdConfig())
 
-	rootCmd.AddCommand(NewCmdQueryList())
-	rootCmd.AddCommand(NewCmdQuery())
+	rootCmd.AddCommand(NewCmdGetQueryList())
+	rootCmd.AddCommand(NewCmdGetQuery())
 
 	cobra.OnInitialize(initConfig)
 	cobra.OnInitialize(initClient)
