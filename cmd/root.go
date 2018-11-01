@@ -4,12 +4,15 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/koooge/redash-sdk-go/redash"
 	"github.com/spf13/cobra"
 )
 
 var rootCmd *cobra.Command
+
 var endpointUrl string
 var apiKey string
+var client *redash.Client
 
 func NewCmdRoot() *cobra.Command {
 	var cmd = &cobra.Command{
@@ -38,4 +41,16 @@ func Execute() {
 
 func init() {
 	rootCmd = NewCmdRoot()
+
+	rootCmd.AddCommand(NewCmdQueryList())
+
+	cobra.OnInitialize(initClient)
+}
+
+func initClient() {
+	config := &redash.Config{
+		EndpointUrl: endpointUrl,
+		ApiKey:      apiKey,
+	}
+	client = redash.NewClient(config)
 }
