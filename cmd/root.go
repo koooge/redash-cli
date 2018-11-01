@@ -55,6 +55,8 @@ func init() {
 
 	rootCmd.AddCommand(NewCmdGetDataSourceList())
 	rootCmd.AddCommand(NewCmdGetDataSource())
+	rootCmd.AddCommand(NewCmdGetDestinationList())
+	rootCmd.AddCommand(NewCmdGetDestination())
 	rootCmd.AddCommand(NewCmdGetQueryList())
 	rootCmd.AddCommand(NewCmdGetQuery())
 	rootCmd.AddCommand(NewCmdGetQueryResult())
