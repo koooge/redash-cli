@@ -62,6 +62,7 @@ func init() {
 	rootCmd.AddCommand(NewCmdGetUser())
 	rootCmd.AddCommand(NewCmdGetGroupList())
 	rootCmd.AddCommand(NewCmdGetGroup())
+	rootCmd.AddCommand(NewCmdGetEvents())
 	rootCmd.AddCommand(NewCmdGetAlertList())
 	rootCmd.AddCommand(NewCmdGetAlert())
 
