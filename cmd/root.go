@@ -60,6 +60,8 @@ func init() {
 	rootCmd.AddCommand(NewCmdGetQueryList())
 	rootCmd.AddCommand(NewCmdGetQuery())
 	rootCmd.AddCommand(NewCmdGetQueryResult())
+	rootCmd.AddCommand(NewCmdGetQuerySnippetList())
+	rootCmd.AddCommand(NewCmdGetQuerySnippet())
 	rootCmd.AddCommand(NewCmdGetUserList())
 	rootCmd.AddCommand(NewCmdGetUser())
 	rootCmd.AddCommand(NewCmdGetGroupList())
