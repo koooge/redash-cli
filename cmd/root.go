@@ -68,6 +68,7 @@ func init() {
 	rootCmd.AddCommand(NewCmdGetMyQueries())
 	rootCmd.AddCommand(NewCmdGetQueryTags())
 	rootCmd.AddCommand(NewCmdPostQueryList())
+	rootCmd.AddCommand(NewCmdPostQuery())
 
 	// query_results
 	rootCmd.AddCommand(NewCmdGetQueryResult())

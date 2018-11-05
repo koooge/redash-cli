@@ -142,3 +142,41 @@ func NewCmdPostQueryList() *cobra.Command {
 
 	return cmd
 }
+
+func NewCmdPostQuery() *cobra.Command {
+	var queryId int
+	var dataSourceId int
+	var query string
+	var name string
+	var description string
+	var schedule string
+
+	var cmd = &cobra.Command{
+		Use:   "post-query",
+		Short: "post-query",
+		Long:  `Post query`,
+		RunE: func(cmd *cobra.Command, args []string) error {
+			input := &redash.PostQueryInput{
+				QueryId:      queryId,
+				DataSourceId: dataSourceId,
+				Query:        query,
+				Name:         name,
+				Description:  description,
+				Schedule:     schedule,
+			}
+			output := client.PostQuery(input)
+			cmd.Println(output.Body)
+
+			return nil
+		},
+	}
+
+	cmd.Flags().IntVar(&queryId, "query-id", 0, "query id")
+	cmd.Flags().IntVar(&dataSourceId, "datasource-id", 0, "datasource id")
+	cmd.Flags().StringVar(&query, "query", "", "query")
+	cmd.Flags().StringVar(&name, "name", "", "name")
+	cmd.Flags().StringVar(&description, "description", "", "description")
+	cmd.Flags().StringVar(&schedule, "schedule", "", "schedule")
+
+	return cmd
+}
