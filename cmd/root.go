@@ -63,6 +63,7 @@ func init() {
 	// destinations
 	rootCmd.AddCommand(NewCmdGetDestinationList())
 	rootCmd.AddCommand(NewCmdGetDestination())
+	rootCmd.AddCommand(NewCmdGetDestinationTypeList())
 
 	// queries
 	rootCmd.AddCommand(NewCmdGetQueryList())

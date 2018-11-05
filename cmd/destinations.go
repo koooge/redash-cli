@@ -42,3 +42,19 @@ func NewCmdGetDestination() *cobra.Command {
 
 	return cmd
 }
+
+func NewCmdGetDestinationTypeList() *cobra.Command {
+	var cmd = &cobra.Command{
+		Use:   "get-destinationtypelist",
+		Short: "get-destinationtypelist",
+		Long:  `Get destinationtypelist`,
+		RunE: func(cmd *cobra.Command, args []string) error {
+			output := client.GetDestinationTypeList()
+			cmd.Println(output.Body)
+
+			return nil
+		},
+	}
+
+	return cmd
+}
