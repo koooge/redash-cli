@@ -9,7 +9,11 @@ Download from [Release page](https://github.com/koooge/redash-cli/releases)
 $ redash config [--profile <value>]
 endpoint_url: <Redash's url>
 api_key: <Your API key>
+
+$ redash get-querylist
 ```
+
+more info
 
 ```
 $ redash -h
@@ -26,11 +30,14 @@ Available Commands:
   get-alertlist            get-alertlist
   get-datasource           get-datasource
   get-datasourcelist       get-datasourcelist
+  get-datasourceschema     get-datasourceschema
   get-destination          get-destination
   get-destinationlist      get-destinationlist
+  get-destinationtypelist  get-destinationtypelist
   get-events               get-events
   get-group                get-group
   get-grouplist            get-grouplist
+  get-job                  get-job
   get-myqueries            get-myqueries
   get-organizationsettings get-organizationsettings
   get-query                get-query
