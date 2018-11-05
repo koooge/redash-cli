@@ -108,6 +108,10 @@ func init() {
 	// settings
 	rootCmd.AddCommand(NewCmdGetOrganizationSettings())
 
+	// favorites
+	rootCmd.AddCommand(NewCmdGetQueryFavoriteList())
+	rootCmd.AddCommand(NewCmdGetDashboardFavoriteList())
+
 	cobra.OnInitialize(initConfig)
 	cobra.OnInitialize(initClient)
 }
