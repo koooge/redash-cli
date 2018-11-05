@@ -12,6 +12,7 @@ import (
 )
 
 var rootCmd *cobra.Command
+var version string
 
 var configFile string
 var profile string
@@ -51,6 +52,7 @@ func Execute() {
 
 func init() {
 	rootCmd = NewCmdRoot()
+	rootCmd.AddCommand(NewCmdVersion())
 	rootCmd.AddCommand(NewCmdConfig())
 
 	rootCmd.AddCommand(NewCmdGetDataSourceList())
