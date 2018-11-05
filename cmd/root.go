@@ -59,11 +59,16 @@ func init() {
 	rootCmd.AddCommand(NewCmdGetDataSource())
 	rootCmd.AddCommand(NewCmdGetDestinationList())
 	rootCmd.AddCommand(NewCmdGetDestination())
+
+	// queries
 	rootCmd.AddCommand(NewCmdGetQueryList())
 	rootCmd.AddCommand(NewCmdGetQuery())
 	rootCmd.AddCommand(NewCmdGetQuerySearch())
 	rootCmd.AddCommand(NewCmdGetQueryRecent())
 	rootCmd.AddCommand(NewCmdGetMyQueries())
+	rootCmd.AddCommand(NewCmdGetQueryTags())
+
+	// query_results
 	rootCmd.AddCommand(NewCmdGetQueryResult())
 	rootCmd.AddCommand(NewCmdGetQuerySnippetList())
 	rootCmd.AddCommand(NewCmdGetQuerySnippet())

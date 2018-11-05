@@ -90,3 +90,19 @@ func NewCmdGetMyQueries() *cobra.Command {
 
 	return cmd
 }
+
+func NewCmdGetQueryTags() *cobra.Command {
+	var cmd = &cobra.Command{
+		Use:   "get-querytags",
+		Short: "get-querytags",
+		Long:  `Get querytags`,
+		RunE: func(cmd *cobra.Command, args []string) error {
+			output := client.GetQueryTags()
+			cmd.Println(output.Body)
+
+			return nil
+		},
+	}
+
+	return cmd
+}
