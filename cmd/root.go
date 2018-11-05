@@ -73,6 +73,7 @@ func init() {
 
 	// query_results
 	rootCmd.AddCommand(NewCmdGetQueryResult())
+	rootCmd.AddCommand(NewCmdGetJob())
 
 	rootCmd.AddCommand(NewCmdGetQuerySnippetList())
 	rootCmd.AddCommand(NewCmdGetQuerySnippet())

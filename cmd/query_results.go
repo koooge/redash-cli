@@ -27,3 +27,26 @@ func NewCmdGetQueryResult() *cobra.Command {
 
 	return cmd
 }
+
+func NewCmdGetJob() *cobra.Command {
+	var jobId int
+
+	var cmd = &cobra.Command{
+		Use:   "get-job",
+		Short: "get-job",
+		Long:  `Get job`,
+		RunE: func(cmd *cobra.Command, args []string) error {
+			input := &redash.GetJobInput{
+				JobId: jobId,
+			}
+			output := client.GetJob(input)
+			cmd.Println(output.Body)
+
+			return nil
+		},
+	}
+
+	cmd.Flags().IntVar(&jobId, "job-id", 0, "job id")
+
+	return cmd
+}
