@@ -55,8 +55,12 @@ func init() {
 	rootCmd.AddCommand(NewCmdVersion())
 	rootCmd.AddCommand(NewCmdConfig())
 
+	// data_sources
 	rootCmd.AddCommand(NewCmdGetDataSourceList())
 	rootCmd.AddCommand(NewCmdGetDataSource())
+	rootCmd.AddCommand(NewCmdGetDataSourceSchema())
+
+	// destinations
 	rootCmd.AddCommand(NewCmdGetDestinationList())
 	rootCmd.AddCommand(NewCmdGetDestination())
 
@@ -75,15 +79,26 @@ func init() {
 	rootCmd.AddCommand(NewCmdGetQueryResult())
 	rootCmd.AddCommand(NewCmdGetJob())
 
+	// query_snippets
 	rootCmd.AddCommand(NewCmdGetQuerySnippetList())
 	rootCmd.AddCommand(NewCmdGetQuerySnippet())
+
+	// users
 	rootCmd.AddCommand(NewCmdGetUserList())
 	rootCmd.AddCommand(NewCmdGetUser())
+
+	// groups
 	rootCmd.AddCommand(NewCmdGetGroupList())
 	rootCmd.AddCommand(NewCmdGetGroup())
+
+	// events
 	rootCmd.AddCommand(NewCmdGetEvents())
+
+	// alerts
 	rootCmd.AddCommand(NewCmdGetAlertList())
 	rootCmd.AddCommand(NewCmdGetAlert())
+
+	// settings
 	rootCmd.AddCommand(NewCmdGetOrganizationSettings())
 
 	cobra.OnInitialize(initConfig)
