@@ -2,15 +2,16 @@
 Client tool for Redash
 
 ## Install
-WIP
+Download from [Release page](https://github.com/koooge/redash-cli/releases)
 
 ## Usage
 ```
-$ redash config
+$ redash config [--profile <value>]
+endpoint_url: <Redash's url>
+api_key: <Your API key>
 ```
 
 ```
-
 $ redash -h
 redash
 
@@ -20,6 +21,7 @@ Usage:
 
 Available Commands:
   config                   config
+  delete-query             delete-query
   get-alert                get-alert
   get-alertlist            get-alertlist
   get-datasource           get-datasource
@@ -29,15 +31,22 @@ Available Commands:
   get-events               get-events
   get-group                get-group
   get-grouplist            get-grouplist
+  get-myqueries            get-myqueries
   get-organizationsettings get-organizationsettings
   get-query                get-query
   get-querylist            get-querylist
+  get-queryrecent          get-queryrecent
   get-queryresult          get-queryresult
+  get-querysearch          get-querysearch
   get-querysnippet         get-querysnippet
   get-querysnippetlist     get-querysnippetlist
+  get-querytags            get-querytags
   get-user                 get-user
   get-userlist             get-userlist
   help                     Help about any command
+  post-query               post-query
+  post-querylist           post-querylist
+  version                  version
 
 Flags:
       --apikey string         api key
