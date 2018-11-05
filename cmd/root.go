@@ -55,6 +55,10 @@ func init() {
 	rootCmd.AddCommand(NewCmdVersion())
 	rootCmd.AddCommand(NewCmdConfig())
 
+	// dashboards
+	rootCmd.AddCommand(NewCmdGetDashboardList())
+	rootCmd.AddCommand(NewCmdGetDashboard())
+
 	// data_sources
 	rootCmd.AddCommand(NewCmdGetDataSourceList())
 	rootCmd.AddCommand(NewCmdGetDataSource())
