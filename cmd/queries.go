@@ -74,3 +74,19 @@ func NewCmdGetQueryRecent() *cobra.Command {
 
 	return cmd
 }
+
+func NewCmdGetMyQueries() *cobra.Command {
+	var cmd = &cobra.Command{
+		Use:   "get-myqueries",
+		Short: "get-myqueries",
+		Long:  `Get myqueries`,
+		RunE: func(cmd *cobra.Command, args []string) error {
+			output := client.GetMyQueries()
+			cmd.Println(output.Body)
+
+			return nil
+		},
+	}
+
+	return cmd
+}
