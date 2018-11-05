@@ -23,6 +23,7 @@ func NewCmdGetQueryList() *cobra.Command {
 
 func NewCmdGetQuery() *cobra.Command {
 	var queryId int
+
 	var cmd = &cobra.Command{
 		Use:   "get-query",
 		Short: "get-query",
@@ -103,6 +104,34 @@ func NewCmdGetQueryTags() *cobra.Command {
 			return nil
 		},
 	}
+
+	return cmd
+}
+
+func NewCmdPostQueryList() *cobra.Command {
+	var dataSourceId int
+	var query string
+	var name string
+	var description string
+	var schedule string
+
+	var cmd = &cobra.Command{
+		Use:   "get-querytags",
+		Short: "get-querytags",
+		Long:  `Get querytags`,
+		RunE: func(cmd *cobra.Command, args []string) error {
+			output := client.GetQueryTags()
+			cmd.Println(output.Body)
+
+			return nil
+		},
+	}
+
+	cmd.Flags().IntVar(&dataSourceId, "datasource-id", 0, "datasource id")
+	cmd.Flags().StringVar(&query, "query", "", "query")
+	cmd.Flags().StringVar(&name, "name", "", "name")
+	cmd.Flags().StringVar(&description, "description", "", "description")
+	cmd.Flags().StringVar(&schedule, "schedule", "", "schedule")
 
 	return cmd
 }
