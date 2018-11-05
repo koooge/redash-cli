@@ -42,3 +42,19 @@ func NewCmdGetQuery() *cobra.Command {
 
 	return cmd
 }
+
+func NewCmdGetQuerySearch() *cobra.Command {
+	var cmd = &cobra.Command{
+		Use:   "get-querysearch",
+		Short: "get-querysearch",
+		Long:  `Get querysearch`,
+		RunE: func(cmd *cobra.Command, args []string) error {
+			output := client.GetQuerySearch()
+			cmd.Println(output.Body)
+
+			return nil
+		},
+	}
+
+	return cmd
+}
