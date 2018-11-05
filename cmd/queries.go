@@ -180,3 +180,26 @@ func NewCmdPostQuery() *cobra.Command {
 
 	return cmd
 }
+
+func NewCmdDeleteQuery() *cobra.Command {
+	var queryId int
+
+	var cmd = &cobra.Command{
+		Use:   "delete-query",
+		Short: "delete-query",
+		Long:  `Delete query`,
+		RunE: func(cmd *cobra.Command, args []string) error {
+			input := &redash.DeleteQueryInput{
+				QueryId: queryId,
+			}
+			output := client.DeleteQuery(input)
+			cmd.Println(output.Body)
+
+			return nil
+		},
+	}
+
+	cmd.Flags().IntVar(&queryId, "query-id", 0, "query id")
+
+	return cmd
+}
