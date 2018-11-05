@@ -116,11 +116,18 @@ func NewCmdPostQueryList() *cobra.Command {
 	var schedule string
 
 	var cmd = &cobra.Command{
-		Use:   "get-querytags",
-		Short: "get-querytags",
-		Long:  `Get querytags`,
+		Use:   "post-querylist",
+		Short: "post-querylist",
+		Long:  `Post querylist`,
 		RunE: func(cmd *cobra.Command, args []string) error {
-			output := client.GetQueryTags()
+			input := &redash.PostQueryListInput{
+				DataSourceId: dataSourceId,
+				Query:        query,
+				Name:         name,
+				Description:  description,
+				Schedule:     schedule,
+			}
+			output := client.PostQueryList(input)
 			cmd.Println(output.Body)
 
 			return nil
