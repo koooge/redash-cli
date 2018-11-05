@@ -58,6 +58,8 @@ func init() {
 	// dashboards
 	rootCmd.AddCommand(NewCmdGetDashboardList())
 	rootCmd.AddCommand(NewCmdGetDashboard())
+	rootCmd.AddCommand(NewCmdGetPublicDashboard())
+	rootCmd.AddCommand(NewCmdGetDashboardTags())
 
 	// data_sources
 	rootCmd.AddCommand(NewCmdGetDataSourceList())

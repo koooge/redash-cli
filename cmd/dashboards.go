@@ -43,3 +43,42 @@ func NewCmdGetDashboard() *cobra.Command {
 
 	return cmd
 }
+
+func NewCmdGetPublicDashboard() *cobra.Command {
+	var token string
+
+	var cmd = &cobra.Command{
+		Use:   "get-publicdashboard",
+		Short: "get-publicdashboard",
+		Long:  `Get publicdashboard`,
+		RunE: func(cmd *cobra.Command, args []string) error {
+			input := &redash.GetPublicDashboardInput{
+				Token: token,
+			}
+			output := client.GetPublicDashboard(input)
+			cmd.Println(output.Body)
+
+			return nil
+		},
+	}
+
+	cmd.Flags().StringVar(&token, "token", "", "token")
+
+	return cmd
+}
+
+func NewCmdGetDashboardTags() *cobra.Command {
+	var cmd = &cobra.Command{
+		Use:   "get-dashboardtags",
+		Short: "get-dashboardtags",
+		Long:  `Get dashboardtags`,
+		RunE: func(cmd *cobra.Command, args []string) error {
+			output := client.GetDashboardTags()
+			cmd.Println(output.Body)
+
+			return nil
+		},
+	}
+
+	return cmd
+}
