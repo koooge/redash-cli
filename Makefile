@@ -11,8 +11,12 @@ get:
 build: get
 	go build -o build/$(BIN) $(LDFLAGS)
 
-clean:
-	rm -rf build dest
+lint: get
+	go tool vet cmd
+	gofmt -e -l `find . -name '*.go'`
+
+test: get lint
+	go test -v ./cmd/...
 
 cross:
 	$(MAKE) build GOOS=linux GOARCH=amd64 BIN=$(BIN)_linux_amd64
@@ -33,4 +37,7 @@ release: clean cross release-deps
 	rm ./dest/$(BIN) ./dest/$(BIN).exe
 	ghr -delete $(VERSION) ./dest/
 
-.PHONY: get build clean cross release-deps release
+clean:
+	rm -rf build dest
+
+.PHONY: get build lint test cross release-deps release clean
