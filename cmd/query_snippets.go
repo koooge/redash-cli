@@ -5,13 +5,13 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func NewCmdGetQuerySnippetList() *cobra.Command {
+func NewCmdGetQuerySnippetList(c redash.IClient) *cobra.Command {
 	var cmd = &cobra.Command{
 		Use:   "get-querysnippetlist",
 		Short: "get-querysnippetlist",
 		Long:  `Get querysnippetlist`,
 		RunE: func(cmd *cobra.Command, args []string) error {
-			output := client.GetQuerySnippetList()
+			output := c.GetQuerySnippetList()
 			cmd.Println(output.Body)
 
 			return nil
@@ -21,7 +21,7 @@ func NewCmdGetQuerySnippetList() *cobra.Command {
 	return cmd
 }
 
-func NewCmdGetQuerySnippet() *cobra.Command {
+func NewCmdGetQuerySnippet(c redash.IClient) *cobra.Command {
 	var querySnippetId int
 	var cmd = &cobra.Command{
 		Use:   "get-querysnippet",
@@ -31,7 +31,7 @@ func NewCmdGetQuerySnippet() *cobra.Command {
 			input := &redash.GetQuerySnippetInput{
 				QuerySnippetId: querySnippetId,
 			}
-			output := client.GetQuerySnippet(input)
+			output := c.GetQuerySnippet(input)
 			cmd.Println(output.Body)
 
 			return nil

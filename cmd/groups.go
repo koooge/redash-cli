@@ -5,13 +5,13 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func NewCmdGetGroupList() *cobra.Command {
+func NewCmdGetGroupList(c redash.IClient) *cobra.Command {
 	var cmd = &cobra.Command{
 		Use:   "get-grouplist",
 		Short: "get-grouplist",
 		Long:  `Get grouplist`,
 		RunE: func(cmd *cobra.Command, args []string) error {
-			output := client.GetGroupList()
+			output := c.GetGroupList()
 			cmd.Println(output.Body)
 
 			return nil
@@ -21,7 +21,7 @@ func NewCmdGetGroupList() *cobra.Command {
 	return cmd
 }
 
-func NewCmdGetGroup() *cobra.Command {
+func NewCmdGetGroup(c redash.IClient) *cobra.Command {
 	var groupId int
 	var cmd = &cobra.Command{
 		Use:   "get-group",
@@ -31,7 +31,7 @@ func NewCmdGetGroup() *cobra.Command {
 			input := &redash.GetGroupInput{
 				GroupId: groupId,
 			}
-			output := client.GetGroup(input)
+			output := c.GetGroup(input)
 			cmd.Println(output.Body)
 
 			return nil

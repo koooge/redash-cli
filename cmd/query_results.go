@@ -5,7 +5,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func NewCmdGetQueryResult() *cobra.Command {
+func NewCmdGetQueryResult(c redash.IClient) *cobra.Command {
 	var queryResultId int
 
 	var cmd = &cobra.Command{
@@ -16,7 +16,7 @@ func NewCmdGetQueryResult() *cobra.Command {
 			input := &redash.GetQueryResultInput{
 				QueryResultId: queryResultId,
 			}
-			output := client.GetQueryResult(input)
+			output := c.GetQueryResult(input)
 			cmd.Println(output.Body)
 
 			return nil
@@ -28,7 +28,7 @@ func NewCmdGetQueryResult() *cobra.Command {
 	return cmd
 }
 
-func NewCmdGetJob() *cobra.Command {
+func NewCmdGetJob(c redash.IClient) *cobra.Command {
 	var jobId int
 
 	var cmd = &cobra.Command{
@@ -39,7 +39,7 @@ func NewCmdGetJob() *cobra.Command {
 			input := &redash.GetJobInput{
 				JobId: jobId,
 			}
-			output := client.GetJob(input)
+			output := c.GetJob(input)
 			cmd.Println(output.Body)
 
 			return nil

@@ -5,13 +5,13 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func NewCmdGetQueryList() *cobra.Command {
+func NewCmdGetQueryList(c redash.IClient) *cobra.Command {
 	var cmd = &cobra.Command{
 		Use:   "get-querylist",
 		Short: "get-querylist",
 		Long:  `Get querylist`,
 		RunE: func(cmd *cobra.Command, args []string) error {
-			output := client.GetQueryList()
+			output := c.GetQueryList()
 			cmd.Println(output.Body)
 
 			return nil
@@ -21,7 +21,7 @@ func NewCmdGetQueryList() *cobra.Command {
 	return cmd
 }
 
-func NewCmdGetQuery() *cobra.Command {
+func NewCmdGetQuery(c redash.IClient) *cobra.Command {
 	var queryId int
 
 	var cmd = &cobra.Command{
@@ -32,7 +32,7 @@ func NewCmdGetQuery() *cobra.Command {
 			input := &redash.GetQueryInput{
 				QueryId: queryId,
 			}
-			output := client.GetQuery(input)
+			output := c.GetQuery(input)
 			cmd.Println(output.Body)
 
 			return nil
@@ -44,13 +44,13 @@ func NewCmdGetQuery() *cobra.Command {
 	return cmd
 }
 
-func NewCmdGetQuerySearch() *cobra.Command {
+func NewCmdGetQuerySearch(c redash.IClient) *cobra.Command {
 	var cmd = &cobra.Command{
 		Use:   "get-querysearch",
 		Short: "get-querysearch",
 		Long:  `Get querysearch`,
 		RunE: func(cmd *cobra.Command, args []string) error {
-			output := client.GetQuerySearch()
+			output := c.GetQuerySearch()
 			cmd.Println(output.Body)
 
 			return nil
@@ -60,13 +60,13 @@ func NewCmdGetQuerySearch() *cobra.Command {
 	return cmd
 }
 
-func NewCmdGetQueryRecent() *cobra.Command {
+func NewCmdGetQueryRecent(c redash.IClient) *cobra.Command {
 	var cmd = &cobra.Command{
 		Use:   "get-queryrecent",
 		Short: "get-queryrecent",
 		Long:  `Get queryrecent`,
 		RunE: func(cmd *cobra.Command, args []string) error {
-			output := client.GetQueryRecent()
+			output := c.GetQueryRecent()
 			cmd.Println(output.Body)
 
 			return nil
@@ -76,13 +76,13 @@ func NewCmdGetQueryRecent() *cobra.Command {
 	return cmd
 }
 
-func NewCmdGetMyQueries() *cobra.Command {
+func NewCmdGetMyQueries(c redash.IClient) *cobra.Command {
 	var cmd = &cobra.Command{
 		Use:   "get-myqueries",
 		Short: "get-myqueries",
 		Long:  `Get myqueries`,
 		RunE: func(cmd *cobra.Command, args []string) error {
-			output := client.GetMyQueries()
+			output := c.GetMyQueries()
 			cmd.Println(output.Body)
 
 			return nil
@@ -92,13 +92,13 @@ func NewCmdGetMyQueries() *cobra.Command {
 	return cmd
 }
 
-func NewCmdGetQueryTags() *cobra.Command {
+func NewCmdGetQueryTags(c redash.IClient) *cobra.Command {
 	var cmd = &cobra.Command{
 		Use:   "get-querytags",
 		Short: "get-querytags",
 		Long:  `Get querytags`,
 		RunE: func(cmd *cobra.Command, args []string) error {
-			output := client.GetQueryTags()
+			output := c.GetQueryTags()
 			cmd.Println(output.Body)
 
 			return nil
@@ -108,7 +108,7 @@ func NewCmdGetQueryTags() *cobra.Command {
 	return cmd
 }
 
-func NewCmdPostQueryList() *cobra.Command {
+func NewCmdPostQueryList(c redash.IClient) *cobra.Command {
 	var dataSourceId int
 	var query string
 	var name string
@@ -127,7 +127,7 @@ func NewCmdPostQueryList() *cobra.Command {
 				Description:  description,
 				Schedule:     schedule,
 			}
-			output := client.PostQueryList(input)
+			output := c.PostQueryList(input)
 			cmd.Println(output.Body)
 
 			return nil
@@ -143,7 +143,7 @@ func NewCmdPostQueryList() *cobra.Command {
 	return cmd
 }
 
-func NewCmdPostQuery() *cobra.Command {
+func NewCmdPostQuery(c redash.IClient) *cobra.Command {
 	var queryId int
 	var dataSourceId int
 	var query string
@@ -164,7 +164,7 @@ func NewCmdPostQuery() *cobra.Command {
 				Description:  description,
 				Schedule:     schedule,
 			}
-			output := client.PostQuery(input)
+			output := c.PostQuery(input)
 			cmd.Println(output.Body)
 
 			return nil
@@ -181,7 +181,7 @@ func NewCmdPostQuery() *cobra.Command {
 	return cmd
 }
 
-func NewCmdDeleteQuery() *cobra.Command {
+func NewCmdDeleteQuery(c redash.IClient) *cobra.Command {
 	var queryId int
 
 	var cmd = &cobra.Command{
@@ -192,7 +192,7 @@ func NewCmdDeleteQuery() *cobra.Command {
 			input := &redash.DeleteQueryInput{
 				QueryId: queryId,
 			}
-			output := client.DeleteQuery(input)
+			output := c.DeleteQuery(input)
 			cmd.Println(output.Body)
 
 			return nil

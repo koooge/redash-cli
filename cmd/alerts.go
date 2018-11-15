@@ -5,13 +5,13 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func NewCmdGetAlertList() *cobra.Command {
+func NewCmdGetAlertList(c redash.IClient) *cobra.Command {
 	var cmd = &cobra.Command{
 		Use:   "get-alertlist",
 		Short: "get-alertlist",
 		Long:  `Get alertlist`,
 		RunE: func(cmd *cobra.Command, args []string) error {
-			output := client.GetAlertList()
+			output := c.GetAlertList()
 			cmd.Println(output.Body)
 
 			return nil
@@ -21,7 +21,7 @@ func NewCmdGetAlertList() *cobra.Command {
 	return cmd
 }
 
-func NewCmdGetAlert() *cobra.Command {
+func NewCmdGetAlert(c redash.IClient) *cobra.Command {
 	var alertId int
 	var cmd = &cobra.Command{
 		Use:   "get-alert",
@@ -31,7 +31,7 @@ func NewCmdGetAlert() *cobra.Command {
 			input := &redash.GetAlertInput{
 				AlertId: alertId,
 			}
-			output := client.GetAlert(input)
+			output := c.GetAlert(input)
 			cmd.Println(output.Body)
 
 			return nil

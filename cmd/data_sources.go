@@ -5,13 +5,13 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func NewCmdGetDataSourceList() *cobra.Command {
+func NewCmdGetDataSourceList(c redash.IClient) *cobra.Command {
 	var cmd = &cobra.Command{
 		Use:   "get-datasourcelist",
 		Short: "get-datasourcelist",
 		Long:  `Get datasourcelist`,
 		RunE: func(cmd *cobra.Command, args []string) error {
-			output := client.GetDataSourceList()
+			output := c.GetDataSourceList()
 			cmd.Println(output.Body)
 
 			return nil
@@ -21,7 +21,7 @@ func NewCmdGetDataSourceList() *cobra.Command {
 	return cmd
 }
 
-func NewCmdGetDataSource() *cobra.Command {
+func NewCmdGetDataSource(c redash.IClient) *cobra.Command {
 	var dataSourceId int
 
 	var cmd = &cobra.Command{
@@ -32,7 +32,7 @@ func NewCmdGetDataSource() *cobra.Command {
 			input := &redash.GetDataSourceInput{
 				DataSourceId: dataSourceId,
 			}
-			output := client.GetDataSource(input)
+			output := c.GetDataSource(input)
 			cmd.Println(output.Body)
 
 			return nil
@@ -44,7 +44,7 @@ func NewCmdGetDataSource() *cobra.Command {
 	return cmd
 }
 
-func NewCmdGetDataSourceSchema() *cobra.Command {
+func NewCmdGetDataSourceSchema(c redash.IClient) *cobra.Command {
 	var dataSourceId int
 
 	var cmd = &cobra.Command{
@@ -55,7 +55,7 @@ func NewCmdGetDataSourceSchema() *cobra.Command {
 			input := &redash.GetDataSourceSchemaInput{
 				DataSourceId: dataSourceId,
 			}
-			output := client.GetDataSourceSchema(input)
+			output := c.GetDataSourceSchema(input)
 			cmd.Println(output.Body)
 
 			return nil

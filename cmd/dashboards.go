@@ -5,13 +5,13 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func NewCmdGetDashboardList() *cobra.Command {
+func NewCmdGetDashboardList(c redash.IClient) *cobra.Command {
 	var cmd = &cobra.Command{
 		Use:   "get-dashboardlist",
 		Short: "get-dashboardlist",
 		Long:  `Get dashboardlist`,
 		RunE: func(cmd *cobra.Command, args []string) error {
-			output := client.GetDashboardList()
+			output := c.GetDashboardList()
 			cmd.Println(output.Body)
 
 			return nil
@@ -21,7 +21,7 @@ func NewCmdGetDashboardList() *cobra.Command {
 	return cmd
 }
 
-func NewCmdGetDashboard() *cobra.Command {
+func NewCmdGetDashboard(c redash.IClient) *cobra.Command {
 	var dashboardSlug string
 
 	var cmd = &cobra.Command{
@@ -32,7 +32,7 @@ func NewCmdGetDashboard() *cobra.Command {
 			input := &redash.GetDashboardInput{
 				DashboardSlug: dashboardSlug,
 			}
-			output := client.GetDashboard(input)
+			output := c.GetDashboard(input)
 			cmd.Println(output.Body)
 
 			return nil
@@ -44,7 +44,7 @@ func NewCmdGetDashboard() *cobra.Command {
 	return cmd
 }
 
-func NewCmdGetPublicDashboard() *cobra.Command {
+func NewCmdGetPublicDashboard(c redash.IClient) *cobra.Command {
 	var token string
 
 	var cmd = &cobra.Command{
@@ -55,7 +55,7 @@ func NewCmdGetPublicDashboard() *cobra.Command {
 			input := &redash.GetPublicDashboardInput{
 				Token: token,
 			}
-			output := client.GetPublicDashboard(input)
+			output := c.GetPublicDashboard(input)
 			cmd.Println(output.Body)
 
 			return nil
@@ -67,13 +67,13 @@ func NewCmdGetPublicDashboard() *cobra.Command {
 	return cmd
 }
 
-func NewCmdGetDashboardTags() *cobra.Command {
+func NewCmdGetDashboardTags(c redash.IClient) *cobra.Command {
 	var cmd = &cobra.Command{
 		Use:   "get-dashboardtags",
 		Short: "get-dashboardtags",
 		Long:  `Get dashboardtags`,
 		RunE: func(cmd *cobra.Command, args []string) error {
-			output := client.GetDashboardTags()
+			output := c.GetDashboardTags()
 			cmd.Println(output.Body)
 
 			return nil

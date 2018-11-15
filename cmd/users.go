@@ -5,13 +5,13 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func NewCmdGetUserList() *cobra.Command {
+func NewCmdGetUserList(c redash.IClient) *cobra.Command {
 	var cmd = &cobra.Command{
 		Use:   "get-userlist",
 		Short: "get-userlist",
 		Long:  `Get userlist`,
 		RunE: func(cmd *cobra.Command, args []string) error {
-			output := client.GetUserList()
+			output := c.GetUserList()
 			cmd.Println(output.Body)
 
 			return nil
@@ -21,7 +21,7 @@ func NewCmdGetUserList() *cobra.Command {
 	return cmd
 }
 
-func NewCmdGetUser() *cobra.Command {
+func NewCmdGetUser(c redash.IClient) *cobra.Command {
 	var userId int
 	var cmd = &cobra.Command{
 		Use:   "get-user",
@@ -31,7 +31,7 @@ func NewCmdGetUser() *cobra.Command {
 			input := &redash.GetUserInput{
 				UserId: userId,
 			}
-			output := client.GetUser(input)
+			output := c.GetUser(input)
 			cmd.Println(output.Body)
 
 			return nil
