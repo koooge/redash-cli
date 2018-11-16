@@ -42,3 +42,25 @@ func NewCmdGetAlert(c redash.IClient) *cobra.Command {
 
 	return cmd
 }
+
+func NewCmdGetAlertSubscriptionList(c redash.IClient) *cobra.Command {
+	var alertId int
+	var cmd = &cobra.Command{
+		Use:   "get-alertsubscriptionlist",
+		Short: "get-alertsubscriptionlist",
+		Long:  `Get alertsubscriptionlist`,
+		RunE: func(cmd *cobra.Command, args []string) error {
+			input := &redash.GetAlertSubscriptionListInput{
+				AlertId: alertId,
+			}
+			output := c.GetAlertSubscriptionList(input)
+			cmd.Println(output.Body)
+
+			return nil
+		},
+	}
+
+	cmd.Flags().IntVar(&alertId, "alert-id", 0, "alert id")
+
+	return cmd
+}

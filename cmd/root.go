@@ -106,6 +106,7 @@ func init() {
 	// alerts
 	rootCmd.AddCommand(NewCmdGetAlertList(client))
 	rootCmd.AddCommand(NewCmdGetAlert(client))
+	rootCmd.AddCommand(NewCmdGetAlertSubscriptionList(client))
 
 	// settings
 	rootCmd.AddCommand(NewCmdGetOrganizationSettings(client))

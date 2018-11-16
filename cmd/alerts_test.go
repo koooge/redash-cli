@@ -71,3 +71,33 @@ func TestNewCmdGetAlert(t *testing.T) {
 		}
 	}
 }
+
+const getAlertSubscriptionListResBody = `[{"something":"something"}]`
+
+func (c *alertsClient) GetAlertSubscriptionList(_ *redash.GetAlertSubscriptionListInput) *redash.GetAlertSubscriptionListOutput {
+	return &redash.GetAlertSubscriptionListOutput{StatusCode: 200, Body: getAlertSubscriptionListResBody}
+}
+
+func TestNewCmdGetAlertSubscriptionList(t *testing.T) {
+	testClient := &alertsClient{}
+
+	testCases := []struct {
+		args []string
+		want string
+	}{
+		{args: []string{"--alert-id", "1"}, want: getAlertSubscriptionListResBody},
+	}
+
+	for _, c := range testCases {
+		buf := new(bytes.Buffer)
+		cmd := NewCmdGetAlertSubscriptionList(testClient)
+		cmd.SetOutput(buf)
+		cmd.SetArgs(c.args)
+		cmd.Execute()
+
+		get := buf.String()
+		if c.want != strings.TrimRight(get, "\n") {
+			t.Errorf("unexpected response: want:%+v, get:%+v", c.want, get)
+		}
+	}
+}
