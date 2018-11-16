@@ -1,10 +1,18 @@
 [![CircleCI](https://circleci.com/gh/koooge/redash-cli/tree/master.svg?style=svg)](https://circleci.com/gh/koooge/redash-cli/tree/master)
 
 # redash-cli
-Client tool for Redash
+A single binary client tool for Redash.
 
 ## Install
 Download from [Release page](https://github.com/koooge/redash-cli/releases)
+
+```
+$ wget -qO- https://github.com/koooge/redash-cli/releases/download/0.0.2/redash_$(uname -s)_amd64_0.0.2.tar.gz | tar zx
+$ sudo mv redash /usr/local/bin/
+
+$ redash version
+0.0.2
+```
 
 ## Usage
 ```
