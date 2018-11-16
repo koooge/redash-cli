@@ -4,10 +4,22 @@ import (
 	"bytes"
 	"strings"
 	"testing"
+
+	"github.com/koooge/redash-sdk-go/redash"
 )
 
+type queriesClient struct {
+	*redash.Client
+}
+
+const getQueryListResBody = `{"something":"something","results":[{"something":"something"}]}`
+
+func (c *queriesClient) GetQueryList() *redash.GetQueryListOutput {
+	return &redash.GetQueryListOutput{StatusCode: 200, Body: getQueryListResBody}
+}
+
 func TestNewCmdGetQueryList(t *testing.T) {
-	const getQueryListResBody = `{"something":"something","results":[{"something":"something"}]}`
+	testClient := &queriesClient{}
 
 	testCases := []struct {
 		args []string
@@ -18,7 +30,7 @@ func TestNewCmdGetQueryList(t *testing.T) {
 
 	for _, c := range testCases {
 		buf := new(bytes.Buffer)
-		cmd := NewCmdGetQueryList()
+		cmd := NewCmdGetQueryList(testClient)
 		cmd.SetOutput(buf)
 		cmd.SetArgs(c.args)
 		cmd.Execute()
