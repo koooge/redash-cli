@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/koooge/redash-cli/tree/master.svg?style=svg)](https://circleci.com/gh/koooge/redash-cli/tree/master)
+
 # redash-cli
 Client tool for Redash
 
