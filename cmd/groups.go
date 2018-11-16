@@ -42,3 +42,25 @@ func NewCmdGetGroup(c redash.IClient) *cobra.Command {
 
 	return cmd
 }
+
+func NewCmdGetGroupMemberList(c redash.IClient) *cobra.Command {
+	var groupId int
+	var cmd = &cobra.Command{
+		Use:   "get-groupmemberlist",
+		Short: "get-groupmemberlist",
+		Long:  `Get groupmemberlist`,
+		RunE: func(cmd *cobra.Command, args []string) error {
+			input := &redash.GetGroupMemberListInput{
+				GroupId: groupId,
+			}
+			output := c.GetGroupMemberList(input)
+			cmd.Println(output.Body)
+
+			return nil
+		},
+	}
+
+	cmd.Flags().IntVar(&groupId, "group-id", 0, "group id")
+
+	return cmd
+}

@@ -99,6 +99,7 @@ func init() {
 	// groups
 	rootCmd.AddCommand(NewCmdGetGroupList(client))
 	rootCmd.AddCommand(NewCmdGetGroup(client))
+	rootCmd.AddCommand(NewCmdGetGroupMemberList(client))
 
 	// events
 	rootCmd.AddCommand(NewCmdGetEvents(client))

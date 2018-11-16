@@ -71,3 +71,33 @@ func TestNewCmdGetGroup(t *testing.T) {
 		}
 	}
 }
+
+const getGroupMemberListResBody = `[{"something":"something"}]`
+
+func (c *groupsClient) GetGroupMemberList(_ *redash.GetGroupMemberListInput) *redash.GetGroupMemberListOutput {
+	return &redash.GetGroupMemberListOutput{StatusCode: 200, Body: getGroupMemberListResBody}
+}
+
+func TestNewCmdGetGroupMemberList(t *testing.T) {
+	testClient := &groupsClient{}
+
+	testCases := []struct {
+		args []string
+		want string
+	}{
+		{args: []string{"--group-id", "1"}, want: getGroupMemberListResBody},
+	}
+
+	for _, c := range testCases {
+		buf := new(bytes.Buffer)
+		cmd := NewCmdGetGroupMemberList(testClient)
+		cmd.SetOutput(buf)
+		cmd.SetArgs(c.args)
+		cmd.Execute()
+
+		get := buf.String()
+		if c.want != strings.TrimRight(get, "\n") {
+			t.Errorf("unexpected response: want:%+v, get:%+v", c.want, get)
+		}
+	}
+}
