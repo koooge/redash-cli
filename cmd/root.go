@@ -156,3 +156,7 @@ func initClient() {
 	}
 	client.SetConfig(config)
 }
+
+func RootCmd() *cobra.Command {
+	return rootCmd
+}

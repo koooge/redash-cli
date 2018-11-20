@@ -11,6 +11,10 @@ get:
 build: get
 	go build -o build/$(BIN) $(LDFLAGS)
 
+doc:
+	rm -rf ./doc && mkdir -p ./doc
+	go run redash.go --doc
+
 lint: get
 	go tool vet cmd
 	gofmt -e -l `find . -name '*.go'`
@@ -40,4 +44,4 @@ release: clean cross release-deps
 clean:
 	rm -rf build dest
 
-.PHONY: get build lint test cross release-deps release clean
+.PHONY: get build doc lint test cross release-deps release clean
