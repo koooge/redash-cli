@@ -11,7 +11,7 @@ $ wget -qO- https://github.com/koooge/redash-cli/releases/download/0.0.2/redash_
 $ sudo mv redash /usr/local/bin/
 
 $ redash version
-0.0.2
+0.1.0
 ```
 
 ## Usage

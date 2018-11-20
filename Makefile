@@ -1,5 +1,5 @@
 BIN ?= redash
-VERSION := 0.0.2
+VERSION := 0.1.0
 
 LDFLAGS := -ldflags "-X github.com/koooge/redash-cli/cmd.version=$(VERSION)"
 
