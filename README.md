@@ -7,7 +7,7 @@ A single binary client tool for Redash.
 Download from [Release page](https://github.com/koooge/redash-cli/releases)
 
 ```
-$ wget -qO- https://github.com/koooge/redash-cli/releases/download/0.0.2/redash_$(uname -s)_amd64_0.0.2.tar.gz | tar zx
+$ wget -qO- https://github.com/koooge/redash-cli/releases/download/0.1.0/redash_$(uname -s)_amd64_0.1.0.tar.gz | tar zx
 $ sudo mv redash /usr/local/bin/
 
 $ redash version
