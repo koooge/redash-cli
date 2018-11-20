@@ -5,13 +5,14 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func NewCmdGetDestinationList(c redash.IClient) *cobra.Command {
+func NewCmdListDestinations(c redash.IClient) *cobra.Command {
 	var cmd = &cobra.Command{
-		Use:   "get-destinationlist",
-		Short: "get-destinationlist",
-		Long:  `Get destinationlist`,
+		Use:   "list-destinations",
+		Short: "list-destinations",
+		Long:  `Get DestinationList`,
 		RunE: func(cmd *cobra.Command, args []string) error {
-			output := c.GetDestinationList()
+			input := &redash.ListDestinationsInput{}
+			output := c.ListDestinations(input)
 			cmd.Println(output.Body)
 
 			return nil
@@ -26,7 +27,7 @@ func NewCmdGetDestination(c redash.IClient) *cobra.Command {
 	var cmd = &cobra.Command{
 		Use:   "get-destination",
 		Short: "get-destination",
-		Long:  `Get destination`,
+		Long:  `Get Destination`,
 		RunE: func(cmd *cobra.Command, args []string) error {
 			input := &redash.GetDestinationInput{
 				DestinationId: destinationId,
@@ -38,18 +39,19 @@ func NewCmdGetDestination(c redash.IClient) *cobra.Command {
 		},
 	}
 
-	cmd.Flags().IntVar(&destinationId, "destination-id", 0, "destination id")
+	cmd.Flags().IntVar(&destinationId, "destination-id", 0, "Destination id")
 
 	return cmd
 }
 
-func NewCmdGetDestinationTypeList(c redash.IClient) *cobra.Command {
+func NewCmdListDestinationTypes(c redash.IClient) *cobra.Command {
 	var cmd = &cobra.Command{
-		Use:   "get-destinationtypelist",
-		Short: "get-destinationtypelist",
-		Long:  `Get destinationtypelist`,
+		Use:   "list-destination-types",
+		Short: "list-destination-types",
+		Long:  `Get DestinationTypeList`,
 		RunE: func(cmd *cobra.Command, args []string) error {
-			output := c.GetDestinationTypeList()
+			input := &redash.ListDestinationTypesInput{}
+			output := c.ListDestinationTypes(input)
 			cmd.Println(output.Body)
 
 			return nil

@@ -8,18 +8,18 @@ import (
 	"github.com/koooge/redash-sdk-go/redash"
 )
 
-type datasourcesClient struct {
+type dataSourcesClient struct {
 	*redash.Client
 }
 
 const getDataSourceListResBody = `[{"something":"something"}]`
 
-func (c *datasourcesClient) GetDataSourceList() *redash.GetDataSourceListOutput {
-	return &redash.GetDataSourceListOutput{StatusCode: 200, Body: getDataSourceListResBody}
+func (c *dataSourcesClient) ListDataSources(_ *redash.ListDataSourcesInput) *redash.ListDataSourcesOutput {
+	return &redash.ListDataSourcesOutput{StatusCode: 200, Body: getDataSourceListResBody}
 }
 
-func TestNewCmdGetDataSourceList(t *testing.T) {
-	testClient := &datasourcesClient{}
+func TestNewCmdListDataSources(t *testing.T) {
+	testClient := &dataSourcesClient{}
 
 	testCases := []struct {
 		args []string
@@ -30,7 +30,7 @@ func TestNewCmdGetDataSourceList(t *testing.T) {
 
 	for _, c := range testCases {
 		buf := new(bytes.Buffer)
-		cmd := NewCmdGetDataSourceList(testClient)
+		cmd := NewCmdListDataSources(testClient)
 		cmd.SetOutput(buf)
 		cmd.SetArgs(c.args)
 		cmd.Execute()
@@ -44,18 +44,18 @@ func TestNewCmdGetDataSourceList(t *testing.T) {
 
 const getDataSourceResBody = `{"something":"something"}`
 
-func (c *datasourcesClient) GetDataSource(_ *redash.GetDataSourceInput) *redash.GetDataSourceOutput {
+func (c *dataSourcesClient) GetDataSource(_ *redash.GetDataSourceInput) *redash.GetDataSourceOutput {
 	return &redash.GetDataSourceOutput{StatusCode: 200, Body: getDataSourceResBody}
 }
 
 func TestNewCmdGetDataSource(t *testing.T) {
-	testClient := &datasourcesClient{}
+	testClient := &dataSourcesClient{}
 
 	testCases := []struct {
 		args []string
 		want string
 	}{
-		{args: []string{"--datasource-id", "1"}, want: getDataSourceResBody},
+		{args: []string{"--data-source-id", "1"}, want: getDataSourceResBody},
 	}
 
 	for _, c := range testCases {
@@ -74,18 +74,18 @@ func TestNewCmdGetDataSource(t *testing.T) {
 
 const getDataSourceSchemaResBody = `{"something":"something"}`
 
-func (c *datasourcesClient) GetDataSourceSchema(_ *redash.GetDataSourceSchemaInput) *redash.GetDataSourceSchemaOutput {
+func (c *dataSourcesClient) GetDataSourceSchema(_ *redash.GetDataSourceSchemaInput) *redash.GetDataSourceSchemaOutput {
 	return &redash.GetDataSourceSchemaOutput{StatusCode: 200, Body: getDataSourceSchemaResBody}
 }
 
 func TestNewCmdGetDataSourceSchema(t *testing.T) {
-	testClient := &datasourcesClient{}
+	testClient := &dataSourcesClient{}
 
 	testCases := []struct {
 		args []string
 		want string
 	}{
-		{args: []string{"--datasource-id", "1"}, want: getDataSourceSchemaResBody},
+		{args: []string{"--data-source-id", "1"}, want: getDataSourceSchemaResBody},
 	}
 
 	for _, c := range testCases {

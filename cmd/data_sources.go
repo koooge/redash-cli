@@ -5,13 +5,14 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func NewCmdGetDataSourceList(c redash.IClient) *cobra.Command {
+func NewCmdListDataSources(c redash.IClient) *cobra.Command {
 	var cmd = &cobra.Command{
-		Use:   "get-datasourcelist",
-		Short: "get-datasourcelist",
-		Long:  `Get datasourcelist`,
+		Use:   "list-data-sources",
+		Short: "list-data-sources",
+		Long:  `Get DataSourceList`,
 		RunE: func(cmd *cobra.Command, args []string) error {
-			output := c.GetDataSourceList()
+			input := &redash.ListDataSourcesInput{}
+			output := c.ListDataSources(input)
 			cmd.Println(output.Body)
 
 			return nil
@@ -25,9 +26,9 @@ func NewCmdGetDataSource(c redash.IClient) *cobra.Command {
 	var dataSourceId int
 
 	var cmd = &cobra.Command{
-		Use:   "get-datasource",
-		Short: "get-datasource",
-		Long:  `Get datasource`,
+		Use:   "get-data-source",
+		Short: "get-data-source",
+		Long:  `Get DataSource`,
 		RunE: func(cmd *cobra.Command, args []string) error {
 			input := &redash.GetDataSourceInput{
 				DataSourceId: dataSourceId,
@@ -39,7 +40,7 @@ func NewCmdGetDataSource(c redash.IClient) *cobra.Command {
 		},
 	}
 
-	cmd.Flags().IntVar(&dataSourceId, "datasource-id", 0, "datasource id")
+	cmd.Flags().IntVar(&dataSourceId, "data-source-id", 0, "DataSource id")
 
 	return cmd
 }
@@ -48,9 +49,9 @@ func NewCmdGetDataSourceSchema(c redash.IClient) *cobra.Command {
 	var dataSourceId int
 
 	var cmd = &cobra.Command{
-		Use:   "get-datasourceschema",
-		Short: "get-datasourceschema",
-		Long:  `Get datasourceschema`,
+		Use:   "get-data-source-schema",
+		Short: "get-data-source-schema",
+		Long:  `Get DataSourceSchema`,
 		RunE: func(cmd *cobra.Command, args []string) error {
 			input := &redash.GetDataSourceSchemaInput{
 				DataSourceId: dataSourceId,
@@ -62,7 +63,7 @@ func NewCmdGetDataSourceSchema(c redash.IClient) *cobra.Command {
 		},
 	}
 
-	cmd.Flags().IntVar(&dataSourceId, "datasource-id", 0, "datasource id")
+	cmd.Flags().IntVar(&dataSourceId, "data-source-id", 0, "DataSource id")
 
 	return cmd
 }

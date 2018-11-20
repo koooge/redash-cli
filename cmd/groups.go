@@ -5,13 +5,14 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func NewCmdGetGroupList(c redash.IClient) *cobra.Command {
+func NewCmdListGroups(c redash.IClient) *cobra.Command {
 	var cmd = &cobra.Command{
-		Use:   "get-grouplist",
-		Short: "get-grouplist",
-		Long:  `Get grouplist`,
+		Use:   "list-groups",
+		Short: "list-groups",
+		Long:  `Get GroupList`,
 		RunE: func(cmd *cobra.Command, args []string) error {
-			output := c.GetGroupList()
+			input := &redash.ListGroupsInput{}
+			output := c.ListGroups(input)
 			cmd.Println(output.Body)
 
 			return nil
@@ -23,6 +24,7 @@ func NewCmdGetGroupList(c redash.IClient) *cobra.Command {
 
 func NewCmdGetGroup(c redash.IClient) *cobra.Command {
 	var groupId int
+
 	var cmd = &cobra.Command{
 		Use:   "get-group",
 		Short: "get-group",
@@ -38,29 +40,29 @@ func NewCmdGetGroup(c redash.IClient) *cobra.Command {
 		},
 	}
 
-	cmd.Flags().IntVar(&groupId, "group-id", 0, "group id")
+	cmd.Flags().IntVar(&groupId, "group-id", 0, "Group id")
 
 	return cmd
 }
 
-func NewCmdGetGroupMemberList(c redash.IClient) *cobra.Command {
+func NewCmdListGroupMembers(c redash.IClient) *cobra.Command {
 	var groupId int
 	var cmd = &cobra.Command{
-		Use:   "get-groupmemberlist",
-		Short: "get-groupmemberlist",
-		Long:  `Get groupmemberlist`,
+		Use:   "list-group-members",
+		Short: "list-group-members",
+		Long:  `Get GroupMemberList`,
 		RunE: func(cmd *cobra.Command, args []string) error {
-			input := &redash.GetGroupMemberListInput{
+			input := &redash.ListGroupMembersInput{
 				GroupId: groupId,
 			}
-			output := c.GetGroupMemberList(input)
+			output := c.ListGroupMembers(input)
 			cmd.Println(output.Body)
 
 			return nil
 		},
 	}
 
-	cmd.Flags().IntVar(&groupId, "group-id", 0, "group id")
+	cmd.Flags().IntVar(&groupId, "group-id", 0, "Group id")
 
 	return cmd
 }

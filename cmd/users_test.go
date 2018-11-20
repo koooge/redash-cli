@@ -12,25 +12,25 @@ type usersClient struct {
 	*redash.Client
 }
 
-const getUserListResBody = `{"something":"something","results":[{"something":"something"}]}`
+const listUsersResBody = `{"something":"something","results":[{"something":"something"}]}`
 
-func (c *usersClient) GetUserList() *redash.GetUserListOutput {
-	return &redash.GetUserListOutput{StatusCode: 200, Body: getUserListResBody}
+func (c *usersClient) ListUsers(_ *redash.ListUsersInput) *redash.ListUsersOutput {
+	return &redash.ListUsersOutput{StatusCode: 200, Body: listUsersResBody}
 }
 
-func TestNewCmdGetUserList(t *testing.T) {
+func TestNewCmdListUsers(t *testing.T) {
 	testClient := &usersClient{}
 
 	testCases := []struct {
 		args []string
 		want string
 	}{
-		{args: []string{}, want: getUserListResBody},
+		{args: []string{}, want: listUsersResBody},
 	}
 
 	for _, c := range testCases {
 		buf := new(bytes.Buffer)
-		cmd := NewCmdGetUserList(testClient)
+		cmd := NewCmdListUsers(testClient)
 		cmd.SetOutput(buf)
 		cmd.SetArgs(c.args)
 		cmd.Execute()

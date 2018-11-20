@@ -14,7 +14,7 @@ type organizationsettingsClient struct {
 
 const getOrganizationSettingsResBody = `{"something":"something"}`
 
-func (c *organizationsettingsClient) GetOrganizationSettings() *redash.GetOrganizationSettingsOutput {
+func (c *organizationsettingsClient) GetOrganizationSettings(_ *redash.GetOrganizationSettingsInput) *redash.GetOrganizationSettingsOutput {
 	return &redash.GetOrganizationSettingsOutput{StatusCode: 200, Body: getOrganizationSettingsResBody}
 }
 

@@ -9,9 +9,9 @@ func NewCmdGetQueryResult(c redash.IClient) *cobra.Command {
 	var queryResultId int
 
 	var cmd = &cobra.Command{
-		Use:   "get-queryresult",
-		Short: "get-queryresult",
-		Long:  `Get queryresult`,
+		Use:   "get-query-result",
+		Short: "get-query-result",
+		Long:  `Get QueryResult`,
 		RunE: func(cmd *cobra.Command, args []string) error {
 			input := &redash.GetQueryResultInput{
 				QueryResultId: queryResultId,
@@ -23,7 +23,7 @@ func NewCmdGetQueryResult(c redash.IClient) *cobra.Command {
 		},
 	}
 
-	cmd.Flags().IntVar(&queryResultId, "queryresult-id", 0, "queryresult id")
+	cmd.Flags().IntVar(&queryResultId, "query-result-id", 0, "QueryResult id")
 
 	return cmd
 }
@@ -34,7 +34,7 @@ func NewCmdGetJob(c redash.IClient) *cobra.Command {
 	var cmd = &cobra.Command{
 		Use:   "get-job",
 		Short: "get-job",
-		Long:  `Get job`,
+		Long:  `Get Job`,
 		RunE: func(cmd *cobra.Command, args []string) error {
 			input := &redash.GetJobInput{
 				JobId: jobId,
@@ -46,7 +46,7 @@ func NewCmdGetJob(c redash.IClient) *cobra.Command {
 		},
 	}
 
-	cmd.Flags().IntVar(&jobId, "job-id", 0, "job id")
+	cmd.Flags().IntVar(&jobId, "job-id", 0, "Job id")
 
 	return cmd
 }

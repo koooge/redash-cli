@@ -5,13 +5,14 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func NewCmdGetAlertList(c redash.IClient) *cobra.Command {
+func NewCmdListAlerts(c redash.IClient) *cobra.Command {
 	var cmd = &cobra.Command{
-		Use:   "get-alertlist",
-		Short: "get-alertlist",
-		Long:  `Get alertlist`,
+		Use:   "list-alerts",
+		Short: "list-alerts",
+		Long:  `Get AlertList`,
 		RunE: func(cmd *cobra.Command, args []string) error {
-			output := c.GetAlertList()
+			input := &redash.ListAlertsInput{}
+			output := c.ListAlerts(input)
 			cmd.Println(output.Body)
 
 			return nil
@@ -26,7 +27,7 @@ func NewCmdGetAlert(c redash.IClient) *cobra.Command {
 	var cmd = &cobra.Command{
 		Use:   "get-alert",
 		Short: "get-alert",
-		Long:  `Get alert`,
+		Long:  `Get Alert`,
 		RunE: func(cmd *cobra.Command, args []string) error {
 			input := &redash.GetAlertInput{
 				AlertId: alertId,
@@ -38,29 +39,29 @@ func NewCmdGetAlert(c redash.IClient) *cobra.Command {
 		},
 	}
 
-	cmd.Flags().IntVar(&alertId, "alert-id", 0, "alert id")
+	cmd.Flags().IntVar(&alertId, "alert-id", 0, "Alert id")
 
 	return cmd
 }
 
-func NewCmdGetAlertSubscriptionList(c redash.IClient) *cobra.Command {
+func NewCmdListAlertSubscriptions(c redash.IClient) *cobra.Command {
 	var alertId int
 	var cmd = &cobra.Command{
-		Use:   "get-alertsubscriptionlist",
-		Short: "get-alertsubscriptionlist",
-		Long:  `Get alertsubscriptionlist`,
+		Use:   "list-alert-subscriptions",
+		Short: "list-alert-subscriptions",
+		Long:  `Get AlertSubscriptionList`,
 		RunE: func(cmd *cobra.Command, args []string) error {
-			input := &redash.GetAlertSubscriptionListInput{
+			input := &redash.ListAlertSubscriptionsInput{
 				AlertId: alertId,
 			}
-			output := c.GetAlertSubscriptionList(input)
+			output := c.ListAlertSubscriptions(input)
 			cmd.Println(output.Body)
 
 			return nil
 		},
 	}
 
-	cmd.Flags().IntVar(&alertId, "alert-id", 0, "alert id")
+	cmd.Flags().IntVar(&alertId, "alert-id", 0, "Alert id")
 
 	return cmd
 }

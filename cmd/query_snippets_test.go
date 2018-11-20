@@ -8,29 +8,29 @@ import (
 	"github.com/koooge/redash-sdk-go/redash"
 )
 
-type querysnippetsClient struct {
+type querySnippetsClient struct {
 	*redash.Client
 }
 
-const getQuerySnippetListResBody = `[{"something":"something"}]`
+const listQuerySnippetsResBody = `[{"something":"something"}]`
 
-func (c *querysnippetsClient) GetQuerySnippetList() *redash.GetQuerySnippetListOutput {
-	return &redash.GetQuerySnippetListOutput{StatusCode: 200, Body: getQuerySnippetListResBody}
+func (c *querySnippetsClient) ListQuerySnippets(_ *redash.ListQuerySnippetsInput) *redash.ListQuerySnippetsOutput {
+	return &redash.ListQuerySnippetsOutput{StatusCode: 200, Body: listQuerySnippetsResBody}
 }
 
-func TestNewCmdGetQuerySnippetList(t *testing.T) {
-	testClient := &querysnippetsClient{}
+func TestNewCmdListquerySnippets(t *testing.T) {
+	testClient := &querySnippetsClient{}
 
 	testCases := []struct {
 		args []string
 		want string
 	}{
-		{args: []string{}, want: getQuerySnippetListResBody},
+		{args: []string{}, want: listQuerySnippetsResBody},
 	}
 
 	for _, c := range testCases {
 		buf := new(bytes.Buffer)
-		cmd := NewCmdGetQuerySnippetList(testClient)
+		cmd := NewCmdListQuerySnippets(testClient)
 		cmd.SetOutput(buf)
 		cmd.SetArgs(c.args)
 		cmd.Execute()
@@ -44,18 +44,18 @@ func TestNewCmdGetQuerySnippetList(t *testing.T) {
 
 const getQuerySnippetResBody = `{"something":"something"}`
 
-func (c *querysnippetsClient) GetQuerySnippet(_ *redash.GetQuerySnippetInput) *redash.GetQuerySnippetOutput {
+func (c *querySnippetsClient) GetQuerySnippet(_ *redash.GetQuerySnippetInput) *redash.GetQuerySnippetOutput {
 	return &redash.GetQuerySnippetOutput{StatusCode: 200, Body: getQuerySnippetResBody}
 }
 
 func TestNewCmdGetQuerySnippet(t *testing.T) {
-	testClient := &querysnippetsClient{}
+	testClient := &querySnippetsClient{}
 
 	testCases := []struct {
 		args []string
 		want string
 	}{
-		{args: []string{"--querysnippet-id", "1"}, want: getQuerySnippetResBody},
+		{args: []string{"--query-snippet-id", "1"}, want: getQuerySnippetResBody},
 	}
 
 	for _, c := range testCases {

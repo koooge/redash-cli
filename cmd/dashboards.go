@@ -5,13 +5,14 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func NewCmdGetDashboardList(c redash.IClient) *cobra.Command {
+func NewCmdListDashboards(c redash.IClient) *cobra.Command {
 	var cmd = &cobra.Command{
-		Use:   "get-dashboardlist",
-		Short: "get-dashboardlist",
-		Long:  `Get dashboardlist`,
+		Use:   "list-dashboards",
+		Short: "list-dashboards",
+		Long:  `Get DashboardList`,
 		RunE: func(cmd *cobra.Command, args []string) error {
-			output := c.GetDashboardList()
+			input := &redash.ListDashboardsInput{}
+			output := c.ListDashboards(input)
 			cmd.Println(output.Body)
 
 			return nil
@@ -27,7 +28,7 @@ func NewCmdGetDashboard(c redash.IClient) *cobra.Command {
 	var cmd = &cobra.Command{
 		Use:   "get-dashboard",
 		Short: "get-dashboard",
-		Long:  `Get dashboard`,
+		Long:  `Get Dashboard`,
 		RunE: func(cmd *cobra.Command, args []string) error {
 			input := &redash.GetDashboardInput{
 				DashboardSlug: dashboardSlug,
@@ -39,7 +40,7 @@ func NewCmdGetDashboard(c redash.IClient) *cobra.Command {
 		},
 	}
 
-	cmd.Flags().StringVar(&dashboardSlug, "dashboard-slug", "", "dashboard slug")
+	cmd.Flags().StringVar(&dashboardSlug, "dashboard-slug", "", "Dashboard slug")
 
 	return cmd
 }
@@ -48,9 +49,9 @@ func NewCmdGetPublicDashboard(c redash.IClient) *cobra.Command {
 	var token string
 
 	var cmd = &cobra.Command{
-		Use:   "get-publicdashboard",
-		Short: "get-publicdashboard",
-		Long:  `Get publicdashboard`,
+		Use:   "get-public-dashboard",
+		Short: "get-public-dashboard",
+		Long:  `Get PublicDashboard`,
 		RunE: func(cmd *cobra.Command, args []string) error {
 			input := &redash.GetPublicDashboardInput{
 				Token: token,
@@ -69,11 +70,12 @@ func NewCmdGetPublicDashboard(c redash.IClient) *cobra.Command {
 
 func NewCmdGetDashboardTags(c redash.IClient) *cobra.Command {
 	var cmd = &cobra.Command{
-		Use:   "get-dashboardtags",
-		Short: "get-dashboardtags",
-		Long:  `Get dashboardtags`,
+		Use:   "get-dashboard-tags",
+		Short: "get-dashboard-tags",
+		Long:  `Get DashboardTags`,
 		RunE: func(cmd *cobra.Command, args []string) error {
-			output := c.GetDashboardTags()
+			input := &redash.GetDashboardTagsInput{}
+			output := c.GetDashboardTags(input)
 			cmd.Println(output.Body)
 
 			return nil

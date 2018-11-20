@@ -12,25 +12,25 @@ type dashboardsClient struct {
 	*redash.Client
 }
 
-const getDashboardListResBody = `{"something":"something","results":[{"something":"something"}]}`
+const listDashboardsResBody = `{"something":"something","results":[{"something":"something"}]}`
 
-func (c *dashboardsClient) GetDashboardList() *redash.GetDashboardListOutput {
-	return &redash.GetDashboardListOutput{StatusCode: 200, Body: getDashboardListResBody}
+func (c *dashboardsClient) ListDashboards(_ *redash.ListDashboardsInput) *redash.ListDashboardsOutput {
+	return &redash.ListDashboardsOutput{StatusCode: 200, Body: listDashboardsResBody}
 }
 
-func TestNewCmdGetDashboardList(t *testing.T) {
+func TestNewCmdListDashboards(t *testing.T) {
 	testClient := &dashboardsClient{}
 
 	testCases := []struct {
 		args []string
 		want string
 	}{
-		{args: []string{}, want: getDashboardListResBody},
+		{args: []string{}, want: listDashboardsResBody},
 	}
 
 	for _, c := range testCases {
 		buf := new(bytes.Buffer)
-		cmd := NewCmdGetDashboardList(testClient)
+		cmd := NewCmdListDashboards(testClient)
 		cmd.SetOutput(buf)
 		cmd.SetArgs(c.args)
 		cmd.Execute()
@@ -104,7 +104,7 @@ func TestNewCmdGetPublicDashboard(t *testing.T) {
 
 const getDashboardTagsResBody = `{"something":"something"}`
 
-func (c *dashboardsClient) GetDashboardTags() *redash.GetDashboardTagsOutput {
+func (c *dashboardsClient) GetDashboardTags(_ *redash.GetDashboardTagsInput) *redash.GetDashboardTagsOutput {
 	return &redash.GetDashboardTagsOutput{StatusCode: 200, Body: getDashboardTagsResBody}
 }
 

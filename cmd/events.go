@@ -9,9 +9,10 @@ func NewCmdGetEvents(c redash.IClient) *cobra.Command {
 	var cmd = &cobra.Command{
 		Use:   "get-events",
 		Short: "get-events",
-		Long:  `Get events`,
+		Long:  `Get Events`,
 		RunE: func(cmd *cobra.Command, args []string) error {
-			output := c.GetEvents()
+			input := &redash.GetEventsInput{}
+			output := c.GetEvents(input)
 			cmd.Println(output.Body)
 
 			return nil

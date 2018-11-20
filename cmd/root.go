@@ -58,30 +58,30 @@ func init() {
 	client = redash.NewClient(nil)
 
 	// dashboards
-	rootCmd.AddCommand(NewCmdGetDashboardList(client))
+	rootCmd.AddCommand(NewCmdListDashboards(client))
 	rootCmd.AddCommand(NewCmdGetDashboard(client))
 	rootCmd.AddCommand(NewCmdGetPublicDashboard(client))
 	rootCmd.AddCommand(NewCmdGetDashboardTags(client))
 
 	// data_sources
-	rootCmd.AddCommand(NewCmdGetDataSourceList(client))
+	rootCmd.AddCommand(NewCmdListDataSources(client))
 	rootCmd.AddCommand(NewCmdGetDataSource(client))
 	rootCmd.AddCommand(NewCmdGetDataSourceSchema(client))
 
 	// destinations
-	rootCmd.AddCommand(NewCmdGetDestinationList(client))
+	rootCmd.AddCommand(NewCmdListDestinations(client))
 	rootCmd.AddCommand(NewCmdGetDestination(client))
-	rootCmd.AddCommand(NewCmdGetDestinationTypeList(client))
+	rootCmd.AddCommand(NewCmdListDestinationTypes(client))
 
 	// queries
-	rootCmd.AddCommand(NewCmdGetQueryList(client))
+	rootCmd.AddCommand(NewCmdListQueries(client))
 	rootCmd.AddCommand(NewCmdGetQuery(client))
 	rootCmd.AddCommand(NewCmdGetQuerySearch(client))
 	rootCmd.AddCommand(NewCmdGetQueryRecent(client))
 	rootCmd.AddCommand(NewCmdGetMyQueries(client))
 	rootCmd.AddCommand(NewCmdGetQueryTags(client))
-	rootCmd.AddCommand(NewCmdPostQueryList(client))
-	rootCmd.AddCommand(NewCmdPostQuery(client))
+	rootCmd.AddCommand(NewCmdCreateQuery(client))
+	rootCmd.AddCommand(NewCmdModifyQuery(client))
 	rootCmd.AddCommand(NewCmdDeleteQuery(client))
 
 	// query_results
@@ -89,32 +89,32 @@ func init() {
 	rootCmd.AddCommand(NewCmdGetJob(client))
 
 	// query_snippets
-	rootCmd.AddCommand(NewCmdGetQuerySnippetList(client))
+	rootCmd.AddCommand(NewCmdListQuerySnippets(client))
 	rootCmd.AddCommand(NewCmdGetQuerySnippet(client))
 
 	// users
-	rootCmd.AddCommand(NewCmdGetUserList(client))
+	rootCmd.AddCommand(NewCmdListUsers(client))
 	rootCmd.AddCommand(NewCmdGetUser(client))
 
 	// groups
-	rootCmd.AddCommand(NewCmdGetGroupList(client))
+	rootCmd.AddCommand(NewCmdListGroups(client))
 	rootCmd.AddCommand(NewCmdGetGroup(client))
-	rootCmd.AddCommand(NewCmdGetGroupMemberList(client))
+	rootCmd.AddCommand(NewCmdListGroupMembers(client))
 
 	// events
 	rootCmd.AddCommand(NewCmdGetEvents(client))
 
 	// alerts
-	rootCmd.AddCommand(NewCmdGetAlertList(client))
+	rootCmd.AddCommand(NewCmdListAlerts(client))
 	rootCmd.AddCommand(NewCmdGetAlert(client))
-	rootCmd.AddCommand(NewCmdGetAlertSubscriptionList(client))
+	rootCmd.AddCommand(NewCmdListAlertSubscriptions(client))
 
 	// settings
 	rootCmd.AddCommand(NewCmdGetOrganizationSettings(client))
 
 	// favorites
-	rootCmd.AddCommand(NewCmdGetQueryFavoriteList(client))
-	rootCmd.AddCommand(NewCmdGetDashboardFavoriteList(client))
+	rootCmd.AddCommand(NewCmdListQueryFavorites(client))
+	rootCmd.AddCommand(NewCmdListDashboardFavorites(client))
 
 	cobra.OnInitialize(initConfig)
 	cobra.OnInitialize(initClient)

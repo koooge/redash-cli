@@ -12,25 +12,25 @@ type alertsClient struct {
 	*redash.Client
 }
 
-const getAlertListResBody = `[{"something":"something"}]`
+const listAlertsResBody = `[{"something":"something"}]`
 
-func (c *alertsClient) GetAlertList() *redash.GetAlertListOutput {
-	return &redash.GetAlertListOutput{StatusCode: 200, Body: getAlertListResBody}
+func (c *alertsClient) ListAlerts(_ *redash.ListAlertsInput) *redash.ListAlertsOutput {
+	return &redash.ListAlertsOutput{StatusCode: 200, Body: listAlertsResBody}
 }
 
-func TestNewCmdGetAlertList(t *testing.T) {
+func TestNewCmdListAlerts(t *testing.T) {
 	testClient := &alertsClient{}
 
 	testCases := []struct {
 		args []string
 		want string
 	}{
-		{args: []string{}, want: getAlertListResBody},
+		{args: []string{}, want: listAlertsResBody},
 	}
 
 	for _, c := range testCases {
 		buf := new(bytes.Buffer)
-		cmd := NewCmdGetAlertList(testClient)
+		cmd := NewCmdListAlerts(testClient)
 		cmd.SetOutput(buf)
 		cmd.SetArgs(c.args)
 		cmd.Execute()
@@ -72,25 +72,25 @@ func TestNewCmdGetAlert(t *testing.T) {
 	}
 }
 
-const getAlertSubscriptionListResBody = `[{"something":"something"}]`
+const listAlertSubscriptionsResBody = `[{"something":"something"}]`
 
-func (c *alertsClient) GetAlertSubscriptionList(_ *redash.GetAlertSubscriptionListInput) *redash.GetAlertSubscriptionListOutput {
-	return &redash.GetAlertSubscriptionListOutput{StatusCode: 200, Body: getAlertSubscriptionListResBody}
+func (c *alertsClient) ListAlertSubscriptions(_ *redash.ListAlertSubscriptionsInput) *redash.ListAlertSubscriptionsOutput {
+	return &redash.ListAlertSubscriptionsOutput{StatusCode: 200, Body: listAlertSubscriptionsResBody}
 }
 
-func TestNewCmdGetAlertSubscriptionList(t *testing.T) {
+func TestNewCmdListAlertSubscriptions(t *testing.T) {
 	testClient := &alertsClient{}
 
 	testCases := []struct {
 		args []string
 		want string
 	}{
-		{args: []string{"--alert-id", "1"}, want: getAlertSubscriptionListResBody},
+		{args: []string{"--alert-id", "1"}, want: listAlertSubscriptionsResBody},
 	}
 
 	for _, c := range testCases {
 		buf := new(bytes.Buffer)
-		cmd := NewCmdGetAlertSubscriptionList(testClient)
+		cmd := NewCmdListAlertSubscriptions(testClient)
 		cmd.SetOutput(buf)
 		cmd.SetArgs(c.args)
 		cmd.Execute()

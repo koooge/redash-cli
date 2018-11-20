@@ -12,25 +12,25 @@ type favoritesClient struct {
 	*redash.Client
 }
 
-const getQueryFavoriteListResBody = `{"something":"something","results":[{"something":"something"}]}`
+const listQueryFavoritesResBody = `{"something":"something","results":[{"something":"something"}]}`
 
-func (c *favoritesClient) GetQueryFavoriteList() *redash.GetQueryFavoriteListOutput {
-	return &redash.GetQueryFavoriteListOutput{StatusCode: 200, Body: getQueryFavoriteListResBody}
+func (c *favoritesClient) ListQueryFavorites(_ *redash.ListQueryFavoritesInput) *redash.ListQueryFavoritesOutput {
+	return &redash.ListQueryFavoritesOutput{StatusCode: 200, Body: listQueryFavoritesResBody}
 }
 
-func TestNewCmdGetQueryFavoriteList(t *testing.T) {
+func TestNewCmdListQueryFavorites(t *testing.T) {
 	testClient := &favoritesClient{}
 
 	testCases := []struct {
 		args []string
 		want string
 	}{
-		{args: []string{}, want: getQueryFavoriteListResBody},
+		{args: []string{}, want: listQueryFavoritesResBody},
 	}
 
 	for _, c := range testCases {
 		buf := new(bytes.Buffer)
-		cmd := NewCmdGetQueryFavoriteList(testClient)
+		cmd := NewCmdListQueryFavorites(testClient)
 		cmd.SetOutput(buf)
 		cmd.SetArgs(c.args)
 		cmd.Execute()
@@ -42,25 +42,25 @@ func TestNewCmdGetQueryFavoriteList(t *testing.T) {
 	}
 }
 
-const getDashboardFavoriteListResBody = `{"something":"something","results":[{"something":"something"}]}`
+const listDashboardFavoritesResBody = `{"something":"something","results":[{"something":"something"}]}`
 
-func (c *favoritesClient) GetDashboardFavoriteList() *redash.GetDashboardFavoriteListOutput {
-	return &redash.GetDashboardFavoriteListOutput{StatusCode: 200, Body: getDashboardFavoriteListResBody}
+func (c *favoritesClient) ListDashboardFavorites(_ *redash.ListDashboardFavoritesInput) *redash.ListDashboardFavoritesOutput {
+	return &redash.ListDashboardFavoritesOutput{StatusCode: 200, Body: listDashboardFavoritesResBody}
 }
 
-func TestNewCmdGetDashboardFavoriteList(t *testing.T) {
+func TestNewCmdListDashboardFavorites(t *testing.T) {
 	testClient := &favoritesClient{}
 
 	testCases := []struct {
 		args []string
 		want string
 	}{
-		{args: []string{}, want: getDashboardFavoriteListResBody},
+		{args: []string{}, want: listDashboardFavoritesResBody},
 	}
 
 	for _, c := range testCases {
 		buf := new(bytes.Buffer)
-		cmd := NewCmdGetDashboardFavoriteList(testClient)
+		cmd := NewCmdListDashboardFavorites(testClient)
 		cmd.SetOutput(buf)
 		cmd.SetArgs(c.args)
 		cmd.Execute()

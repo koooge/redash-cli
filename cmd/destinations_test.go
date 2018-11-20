@@ -12,25 +12,25 @@ type destinationsClient struct {
 	*redash.Client
 }
 
-const getDestinationListResBody = `[{"something":"something"}]`
+const listDestinationsResBody = `[{"something":"something"}]`
 
-func (c *destinationsClient) GetDestinationList() *redash.GetDestinationListOutput {
-	return &redash.GetDestinationListOutput{StatusCode: 200, Body: getDestinationListResBody}
+func (c *destinationsClient) ListDestinations(*redash.ListDestinationsInput) *redash.ListDestinationsOutput {
+	return &redash.ListDestinationsOutput{StatusCode: 200, Body: listDestinationsResBody}
 }
 
-func TestNewCmdGetDestinationList(t *testing.T) {
+func TestNewCmdListDestinations(t *testing.T) {
 	testClient := &destinationsClient{}
 
 	testCases := []struct {
 		args []string
 		want string
 	}{
-		{args: []string{}, want: getDestinationListResBody},
+		{args: []string{}, want: listDestinationsResBody},
 	}
 
 	for _, c := range testCases {
 		buf := new(bytes.Buffer)
-		cmd := NewCmdGetDestinationList(testClient)
+		cmd := NewCmdListDestinations(testClient)
 		cmd.SetOutput(buf)
 		cmd.SetArgs(c.args)
 		cmd.Execute()
@@ -72,25 +72,25 @@ func TestNewCmdGetDestination(t *testing.T) {
 	}
 }
 
-const getDestinationTypeListResBody = `[{"something":"something"}]`
+const listDestinationTypesResBody = `[{"something":"something"}]`
 
-func (c *destinationsClient) GetDestinationTypeList() *redash.GetDestinationTypeListOutput {
-	return &redash.GetDestinationTypeListOutput{StatusCode: 200, Body: getDestinationTypeListResBody}
+func (c *destinationsClient) ListDestinationTypes(_ *redash.ListDestinationTypesInput) *redash.ListDestinationTypesOutput {
+	return &redash.ListDestinationTypesOutput{StatusCode: 200, Body: listDestinationTypesResBody}
 }
 
-func TestNewCmdGetDestinationTypeList(t *testing.T) {
+func TestNewCmdListDestinationTypes(t *testing.T) {
 	testClient := &destinationsClient{}
 
 	testCases := []struct {
 		args []string
 		want string
 	}{
-		{args: []string{}, want: getDestinationTypeListResBody},
+		{args: []string{}, want: listDestinationTypesResBody},
 	}
 
 	for _, c := range testCases {
 		buf := new(bytes.Buffer)
-		cmd := NewCmdGetDestinationTypeList(testClient)
+		cmd := NewCmdListDestinationTypes(testClient)
 		cmd.SetOutput(buf)
 		cmd.SetArgs(c.args)
 		cmd.Execute()

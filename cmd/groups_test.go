@@ -12,25 +12,25 @@ type groupsClient struct {
 	*redash.Client
 }
 
-const getGroupListResBody = `[{"something":"something"}]`
+const listGroupsResBody = `[{"something":"something"}]`
 
-func (c *groupsClient) GetGroupList() *redash.GetGroupListOutput {
-	return &redash.GetGroupListOutput{StatusCode: 200, Body: getGroupListResBody}
+func (c *groupsClient) ListGroups(_ *redash.ListGroupsInput) *redash.ListGroupsOutput {
+	return &redash.ListGroupsOutput{StatusCode: 200, Body: listGroupsResBody}
 }
 
-func TestNewCmdGetGroupList(t *testing.T) {
+func TestNewCmdListGroups(t *testing.T) {
 	testClient := &groupsClient{}
 
 	testCases := []struct {
 		args []string
 		want string
 	}{
-		{args: []string{}, want: getGroupListResBody},
+		{args: []string{}, want: listGroupsResBody},
 	}
 
 	for _, c := range testCases {
 		buf := new(bytes.Buffer)
-		cmd := NewCmdGetGroupList(testClient)
+		cmd := NewCmdListGroups(testClient)
 		cmd.SetOutput(buf)
 		cmd.SetArgs(c.args)
 		cmd.Execute()
@@ -72,25 +72,25 @@ func TestNewCmdGetGroup(t *testing.T) {
 	}
 }
 
-const getGroupMemberListResBody = `[{"something":"something"}]`
+const listGroupMembersResBody = `[{"something":"something"}]`
 
-func (c *groupsClient) GetGroupMemberList(_ *redash.GetGroupMemberListInput) *redash.GetGroupMemberListOutput {
-	return &redash.GetGroupMemberListOutput{StatusCode: 200, Body: getGroupMemberListResBody}
+func (c *groupsClient) ListGroupMembers(_ *redash.ListGroupMembersInput) *redash.ListGroupMembersOutput {
+	return &redash.ListGroupMembersOutput{StatusCode: 200, Body: listGroupMembersResBody}
 }
 
-func TestNewCmdGetGroupMemberList(t *testing.T) {
+func TestNewCmdListGroupMembers(t *testing.T) {
 	testClient := &groupsClient{}
 
 	testCases := []struct {
 		args []string
 		want string
 	}{
-		{args: []string{"--group-id", "1"}, want: getGroupMemberListResBody},
+		{args: []string{"--group-id", "1"}, want: listGroupMembersResBody},
 	}
 
 	for _, c := range testCases {
 		buf := new(bytes.Buffer)
-		cmd := NewCmdGetGroupMemberList(testClient)
+		cmd := NewCmdListGroupMembers(testClient)
 		cmd.SetOutput(buf)
 		cmd.SetArgs(c.args)
 		cmd.Execute()

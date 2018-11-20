@@ -5,13 +5,14 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func NewCmdGetQueryFavoriteList(c redash.IClient) *cobra.Command {
+func NewCmdListQueryFavorites(c redash.IClient) *cobra.Command {
 	var cmd = &cobra.Command{
-		Use:   "get-queryfavoritelist",
-		Short: "get-queryfavoritelist",
-		Long:  `Get queryfavoritelist`,
+		Use:   "list-query-favorites",
+		Short: "list-query-favorites",
+		Long:  `Get QueryFavoriteList`,
 		RunE: func(cmd *cobra.Command, args []string) error {
-			output := c.GetQueryFavoriteList()
+			input := &redash.ListQueryFavoritesInput{}
+			output := c.ListQueryFavorites(input)
 			cmd.Println(output.Body)
 
 			return nil
@@ -21,13 +22,14 @@ func NewCmdGetQueryFavoriteList(c redash.IClient) *cobra.Command {
 	return cmd
 }
 
-func NewCmdGetDashboardFavoriteList(c redash.IClient) *cobra.Command {
+func NewCmdListDashboardFavorites(c redash.IClient) *cobra.Command {
 	var cmd = &cobra.Command{
-		Use:   "get-dashboardfavoritelist",
-		Short: "get-dashboardfavoritelist",
-		Long:  `Get dashboardfavoritelist`,
+		Use:   "list-dashboard-favorites",
+		Short: "list-dashboard-favorites",
+		Long:  `Get DashboardFavoriteList`,
 		RunE: func(cmd *cobra.Command, args []string) error {
-			output := c.GetDashboardFavoriteList()
+			input := &redash.ListDashboardFavoritesInput{}
+			output := c.ListDashboardFavorites(input)
 			cmd.Println(output.Body)
 
 			return nil

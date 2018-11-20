@@ -8,24 +8,24 @@ import (
 	"github.com/koooge/redash-sdk-go/redash"
 )
 
-type queryresultsClient struct {
+type queryResultsClient struct {
 	*redash.Client
 }
 
 const getQueryResultResBody = `{"something":"something"}`
 
-func (c *queryresultsClient) GetQueryResult(_ *redash.GetQueryResultInput) *redash.GetQueryResultOutput {
+func (c *queryResultsClient) GetQueryResult(_ *redash.GetQueryResultInput) *redash.GetQueryResultOutput {
 	return &redash.GetQueryResultOutput{StatusCode: 200, Body: getQueryResultResBody}
 }
 
 func TestNewCmdGetQueryResult(t *testing.T) {
-	testClient := &queryresultsClient{}
+	testClient := &queryResultsClient{}
 
 	testCases := []struct {
 		args []string
 		want string
 	}{
-		{args: []string{"--queryresult-id", "1"}, want: getQueryResultResBody},
+		{args: []string{"--query-result-id", "1"}, want: getQueryResultResBody},
 	}
 
 	for _, c := range testCases {
@@ -44,12 +44,12 @@ func TestNewCmdGetQueryResult(t *testing.T) {
 
 const getJobResBody = `{"something":"something"}`
 
-func (c *queryresultsClient) GetJob(_ *redash.GetJobInput) *redash.GetJobOutput {
+func (c *queryResultsClient) GetJob(_ *redash.GetJobInput) *redash.GetJobOutput {
 	return &redash.GetJobOutput{StatusCode: 200, Body: getJobResBody}
 }
 
 func TestNewCmdGetJob(t *testing.T) {
-	testClient := &queryresultsClient{}
+	testClient := &queryResultsClient{}
 
 	testCases := []struct {
 		args []string

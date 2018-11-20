@@ -12,25 +12,25 @@ type queriesClient struct {
 	*redash.Client
 }
 
-const getQueryListResBody = `{"something":"something","results":[{"something":"something"}]}`
+const listQueriesResBody = `{"something":"something","results":[{"something":"something"}]}`
 
-func (c *queriesClient) GetQueryList() *redash.GetQueryListOutput {
-	return &redash.GetQueryListOutput{StatusCode: 200, Body: getQueryListResBody}
+func (c *queriesClient) ListQueries(_ *redash.ListQueriesInput) *redash.ListQueriesOutput {
+	return &redash.ListQueriesOutput{StatusCode: 200, Body: listQueriesResBody}
 }
 
-func TestNewCmdGetQueryList(t *testing.T) {
+func TestNewCmdListQueries(t *testing.T) {
 	testClient := &queriesClient{}
 
 	testCases := []struct {
 		args []string
 		want string
 	}{
-		{args: []string{}, want: getQueryListResBody},
+		{args: []string{}, want: listQueriesResBody},
 	}
 
 	for _, c := range testCases {
 		buf := new(bytes.Buffer)
-		cmd := NewCmdGetQueryList(testClient)
+		cmd := NewCmdListQueries(testClient)
 		cmd.SetOutput(buf)
 		cmd.SetArgs(c.args)
 		cmd.Execute()
@@ -74,7 +74,7 @@ func TestNewCmdGetQuery(t *testing.T) {
 
 const getQuerySearchResBody = `[{"something":"something"}]`
 
-func (c *queriesClient) GetQuerySearch() *redash.GetQuerySearchOutput {
+func (c *queriesClient) GetQuerySearch(_ *redash.GetQuerySearchInput) *redash.GetQuerySearchOutput {
 	return &redash.GetQuerySearchOutput{StatusCode: 200, Body: getQuerySearchResBody}
 }
 
@@ -104,7 +104,7 @@ func TestNewCmdGetQuerySearch(t *testing.T) {
 
 const getQueryRecentResBody = `[{"something":"something"}]`
 
-func (c *queriesClient) GetQueryRecent() *redash.GetQueryRecentOutput {
+func (c *queriesClient) GetQueryRecent(_ *redash.GetQueryRecentInput) *redash.GetQueryRecentOutput {
 	return &redash.GetQueryRecentOutput{StatusCode: 200, Body: getQueryRecentResBody}
 }
 
@@ -134,7 +134,7 @@ func TestNewCmdGetQueryRecent(t *testing.T) {
 
 const getMyQueriesResBody = `{"something":"something","results":[{"something":"something"}]}`
 
-func (c *queriesClient) GetMyQueries() *redash.GetMyQueriesOutput {
+func (c *queriesClient) GetMyQueries(_ *redash.GetMyQueriesInput) *redash.GetMyQueriesOutput {
 	return &redash.GetMyQueriesOutput{StatusCode: 200, Body: getMyQueriesResBody}
 }
 
@@ -164,7 +164,7 @@ func TestNewCmdGetMyQueries(t *testing.T) {
 
 const getQueryTagsResBody = `{"something":"something"}`
 
-func (c *queriesClient) GetQueryTags() *redash.GetQueryTagsOutput {
+func (c *queriesClient) GetQueryTags(_ *redash.GetQueryTagsInput) *redash.GetQueryTagsOutput {
 	return &redash.GetQueryTagsOutput{StatusCode: 200, Body: getQueryTagsResBody}
 }
 
@@ -192,25 +192,25 @@ func TestNewCmdGetQueryTags(t *testing.T) {
 	}
 }
 
-const postQueryListResBody = `{"something":"something"}`
+const createQueryResBody = `{"something":"something"}`
 
-func (c *queriesClient) PostQueryList(_ *redash.PostQueryListInput) *redash.PostQueryListOutput {
-	return &redash.PostQueryListOutput{StatusCode: 200, Body: postQueryListResBody}
+func (c *queriesClient) CreateQuery(_ *redash.CreateQueryInput) *redash.CreateQueryOutput {
+	return &redash.CreateQueryOutput{StatusCode: 200, Body: createQueryResBody}
 }
 
-func TestNewCmdPostQueryList(t *testing.T) {
+func TestNewCmdCreateQuery(t *testing.T) {
 	testClient := &queriesClient{}
 
 	testCases := []struct {
 		args []string
 		want string
 	}{
-		{args: []string{"--datasource-id", "1", "--query", "something", "--name", "something"}, want: postQueryListResBody},
+		{args: []string{"--data-source-id", "1", "--query", "something", "--name", "something"}, want: createQueryResBody},
 	}
 
 	for _, c := range testCases {
 		buf := new(bytes.Buffer)
-		cmd := NewCmdPostQueryList(testClient)
+		cmd := NewCmdCreateQuery(testClient)
 		cmd.SetOutput(buf)
 		cmd.SetArgs(c.args)
 		cmd.Execute()
@@ -222,25 +222,25 @@ func TestNewCmdPostQueryList(t *testing.T) {
 	}
 }
 
-const postQueryResBody = `{"something":"something"}`
+const modifyQueryResBody = `{"something":"something"}`
 
-func (c *queriesClient) PostQuery(_ *redash.PostQueryInput) *redash.PostQueryOutput {
-	return &redash.PostQueryOutput{StatusCode: 200, Body: postQueryResBody}
+func (c *queriesClient) ModifyQuery(_ *redash.ModifyQueryInput) *redash.ModifyQueryOutput {
+	return &redash.ModifyQueryOutput{StatusCode: 200, Body: modifyQueryResBody}
 }
 
-func TestNewCmdPostQuery(t *testing.T) {
+func TestNewCmdModifyQuery(t *testing.T) {
 	testClient := &queriesClient{}
 
 	testCases := []struct {
 		args []string
 		want string
 	}{
-		{args: []string{"--datasource-id", "1", "--query", "something", "--name", "something"}, want: postQueryResBody},
+		{args: []string{"--data-source-id", "1", "--query", "something", "--name", "something"}, want: modifyQueryResBody},
 	}
 
 	for _, c := range testCases {
 		buf := new(bytes.Buffer)
-		cmd := NewCmdPostQuery(testClient)
+		cmd := NewCmdModifyQuery(testClient)
 		cmd.SetOutput(buf)
 		cmd.SetArgs(c.args)
 		cmd.Execute()

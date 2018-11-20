@@ -7,11 +7,12 @@ import (
 
 func NewCmdGetOrganizationSettings(c redash.IClient) *cobra.Command {
 	var cmd = &cobra.Command{
-		Use:   "get-organizationsettings",
-		Short: "get-organizationsettings",
-		Long:  `Get organizationsettings`,
+		Use:   "get-organization-settings",
+		Short: "get-organization-settings",
+		Long:  `Get OrganizationSettings`,
 		RunE: func(cmd *cobra.Command, args []string) error {
-			output := c.GetOrganizationSettings()
+			input := &redash.GetOrganizationSettingsInput{}
+			output := c.GetOrganizationSettings(input)
 			cmd.Println(output.Body)
 
 			return nil

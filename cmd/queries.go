@@ -5,13 +5,14 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func NewCmdGetQueryList(c redash.IClient) *cobra.Command {
+func NewCmdListQueries(c redash.IClient) *cobra.Command {
 	var cmd = &cobra.Command{
-		Use:   "get-querylist",
-		Short: "get-querylist",
-		Long:  `Get querylist`,
+		Use:   "list-queries",
+		Short: "list-queries",
+		Long:  `Get QueryList`,
 		RunE: func(cmd *cobra.Command, args []string) error {
-			output := c.GetQueryList()
+			input := &redash.ListQueriesInput{}
+			output := c.ListQueries(input)
 			cmd.Println(output.Body)
 
 			return nil
@@ -27,7 +28,7 @@ func NewCmdGetQuery(c redash.IClient) *cobra.Command {
 	var cmd = &cobra.Command{
 		Use:   "get-query",
 		Short: "get-query",
-		Long:  `Get query`,
+		Long:  `Get Query`,
 		RunE: func(cmd *cobra.Command, args []string) error {
 			input := &redash.GetQueryInput{
 				QueryId: queryId,
@@ -39,18 +40,19 @@ func NewCmdGetQuery(c redash.IClient) *cobra.Command {
 		},
 	}
 
-	cmd.Flags().IntVar(&queryId, "query-id", 0, "query id")
+	cmd.Flags().IntVar(&queryId, "query-id", 0, "Query id")
 
 	return cmd
 }
 
 func NewCmdGetQuerySearch(c redash.IClient) *cobra.Command {
 	var cmd = &cobra.Command{
-		Use:   "get-querysearch",
-		Short: "get-querysearch",
-		Long:  `Get querysearch`,
+		Use:   "get-query-search",
+		Short: "get-query-search",
+		Long:  `Get QuerySearch`,
 		RunE: func(cmd *cobra.Command, args []string) error {
-			output := c.GetQuerySearch()
+			input := &redash.GetQuerySearchInput{}
+			output := c.GetQuerySearch(input)
 			cmd.Println(output.Body)
 
 			return nil
@@ -62,11 +64,12 @@ func NewCmdGetQuerySearch(c redash.IClient) *cobra.Command {
 
 func NewCmdGetQueryRecent(c redash.IClient) *cobra.Command {
 	var cmd = &cobra.Command{
-		Use:   "get-queryrecent",
-		Short: "get-queryrecent",
-		Long:  `Get queryrecent`,
+		Use:   "get-query-recent",
+		Short: "get-query-recent",
+		Long:  `Get QueryRecent`,
 		RunE: func(cmd *cobra.Command, args []string) error {
-			output := c.GetQueryRecent()
+			input := &redash.GetQueryRecentInput{}
+			output := c.GetQueryRecent(input)
 			cmd.Println(output.Body)
 
 			return nil
@@ -78,11 +81,12 @@ func NewCmdGetQueryRecent(c redash.IClient) *cobra.Command {
 
 func NewCmdGetMyQueries(c redash.IClient) *cobra.Command {
 	var cmd = &cobra.Command{
-		Use:   "get-myqueries",
-		Short: "get-myqueries",
-		Long:  `Get myqueries`,
+		Use:   "get-my-queries",
+		Short: "get-my-queries",
+		Long:  `Get my-queries`,
 		RunE: func(cmd *cobra.Command, args []string) error {
-			output := c.GetMyQueries()
+			input := &redash.GetMyQueriesInput{}
+			output := c.GetMyQueries(input)
 			cmd.Println(output.Body)
 
 			return nil
@@ -94,11 +98,12 @@ func NewCmdGetMyQueries(c redash.IClient) *cobra.Command {
 
 func NewCmdGetQueryTags(c redash.IClient) *cobra.Command {
 	var cmd = &cobra.Command{
-		Use:   "get-querytags",
-		Short: "get-querytags",
-		Long:  `Get querytags`,
+		Use:   "get-query-tags",
+		Short: "get-query-tags",
+		Long:  `Get QueryTags`,
 		RunE: func(cmd *cobra.Command, args []string) error {
-			output := c.GetQueryTags()
+			input := &redash.GetQueryTagsInput{}
+			output := c.GetQueryTags(input)
 			cmd.Println(output.Body)
 
 			return nil
@@ -108,7 +113,7 @@ func NewCmdGetQueryTags(c redash.IClient) *cobra.Command {
 	return cmd
 }
 
-func NewCmdPostQueryList(c redash.IClient) *cobra.Command {
+func NewCmdCreateQuery(c redash.IClient) *cobra.Command {
 	var dataSourceId int
 	var query string
 	var name string
@@ -116,34 +121,34 @@ func NewCmdPostQueryList(c redash.IClient) *cobra.Command {
 	var schedule string
 
 	var cmd = &cobra.Command{
-		Use:   "post-querylist",
-		Short: "post-querylist",
-		Long:  `Post querylist`,
+		Use:   "create-query",
+		Short: "create-query",
+		Long:  `Post QueryList`,
 		RunE: func(cmd *cobra.Command, args []string) error {
-			input := &redash.PostQueryListInput{
+			input := &redash.CreateQueryInput{
 				DataSourceId: dataSourceId,
 				Query:        query,
 				Name:         name,
 				Description:  description,
 				Schedule:     schedule,
 			}
-			output := c.PostQueryList(input)
+			output := c.CreateQuery(input)
 			cmd.Println(output.Body)
 
 			return nil
 		},
 	}
 
-	cmd.Flags().IntVar(&dataSourceId, "datasource-id", 0, "datasource id")
-	cmd.Flags().StringVar(&query, "query", "", "query")
-	cmd.Flags().StringVar(&name, "name", "", "name")
-	cmd.Flags().StringVar(&description, "description", "", "description")
-	cmd.Flags().StringVar(&schedule, "schedule", "", "schedule")
+	cmd.Flags().IntVar(&dataSourceId, "data-source-id", 0, "DataSource id")
+	cmd.Flags().StringVar(&query, "query", "", "Query")
+	cmd.Flags().StringVar(&name, "name", "", "Name")
+	cmd.Flags().StringVar(&description, "description", "", "Description")
+	cmd.Flags().StringVar(&schedule, "schedule", "", "Schedule")
 
 	return cmd
 }
 
-func NewCmdPostQuery(c redash.IClient) *cobra.Command {
+func NewCmdModifyQuery(c redash.IClient) *cobra.Command {
 	var queryId int
 	var dataSourceId int
 	var query string
@@ -152,11 +157,11 @@ func NewCmdPostQuery(c redash.IClient) *cobra.Command {
 	var schedule string
 
 	var cmd = &cobra.Command{
-		Use:   "post-query",
-		Short: "post-query",
-		Long:  `Post query`,
+		Use:   "modify-query",
+		Short: "modify-query",
+		Long:  `Post Query`,
 		RunE: func(cmd *cobra.Command, args []string) error {
-			input := &redash.PostQueryInput{
+			input := &redash.ModifyQueryInput{
 				QueryId:      queryId,
 				DataSourceId: dataSourceId,
 				Query:        query,
@@ -164,19 +169,19 @@ func NewCmdPostQuery(c redash.IClient) *cobra.Command {
 				Description:  description,
 				Schedule:     schedule,
 			}
-			output := c.PostQuery(input)
+			output := c.ModifyQuery(input)
 			cmd.Println(output.Body)
 
 			return nil
 		},
 	}
 
-	cmd.Flags().IntVar(&queryId, "query-id", 0, "query id")
-	cmd.Flags().IntVar(&dataSourceId, "datasource-id", 0, "datasource id")
-	cmd.Flags().StringVar(&query, "query", "", "query")
-	cmd.Flags().StringVar(&name, "name", "", "name")
-	cmd.Flags().StringVar(&description, "description", "", "description")
-	cmd.Flags().StringVar(&schedule, "schedule", "", "schedule")
+	cmd.Flags().IntVar(&queryId, "query-id", 0, "Query id")
+	cmd.Flags().IntVar(&dataSourceId, "data-source-id", 0, "DataSource id")
+	cmd.Flags().StringVar(&query, "query", "", "Query")
+	cmd.Flags().StringVar(&name, "name", "", "Name")
+	cmd.Flags().StringVar(&description, "description", "", "Description")
+	cmd.Flags().StringVar(&schedule, "schedule", "", "Schedule")
 
 	return cmd
 }
@@ -199,7 +204,7 @@ func NewCmdDeleteQuery(c redash.IClient) *cobra.Command {
 		},
 	}
 
-	cmd.Flags().IntVar(&queryId, "query-id", 0, "query id")
+	cmd.Flags().IntVar(&queryId, "query-id", 0, "Query id")
 
 	return cmd
 }

@@ -14,7 +14,7 @@ type eventsClient struct {
 
 const getEventsResBody = `[{"something":"something"}]`
 
-func (c *eventsClient) GetEvents() *redash.GetEventsOutput {
+func (c *eventsClient) GetEvents(_ *redash.GetEventsInput) *redash.GetEventsOutput {
 	return &redash.GetEventsOutput{StatusCode: 200, Body: getEventsResBody}
 }
 
