@@ -22,6 +22,11 @@ lint: get
 test: get lint
 	go test -v ./cmd/...
 
+coverage: get
+	go test -coverprofile=cover.out -covermode=count ./...
+	go tool cover -html=cover.out
+
+
 cross:
 	$(MAKE) build GOOS=linux GOARCH=amd64 BIN=$(BIN)_linux_amd64
 	$(MAKE) build GOOS=darwin GOARCH=amd64 BIN=$(BIN)_darwin_amd64
