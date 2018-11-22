@@ -1,4 +1,5 @@
 [![CircleCI](https://circleci.com/gh/koooge/redash-cli/tree/master.svg?style=svg)](https://circleci.com/gh/koooge/redash-cli/tree/master)
+[![Build status](https://ci.appveyor.com/api/projects/status/l41n2c8ini09ppuv/branch/master?svg=true)](https://ci.appveyor.com/project/koooge/redash-cli/branch/master)
 
 # redash-cli
 A single binary client tool for Redash.
