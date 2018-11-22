@@ -1,0 +1,12 @@
+version: 1.0.{build}
+
+build: off
+clone_folder: c:\go\src\github.com\koooge\redash-cli
+shallow_clone: true
+
+install:
+  - go get -v ./...
+before_test:
+  - go vet -v ./cmd/...
+test_script:
+  - go test -v ./cmd/...
