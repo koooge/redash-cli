@@ -65,8 +65,15 @@ func init() {
 
 	// data_sources
 	rootCmd.AddCommand(NewCmdListDataSources(client))
+	rootCmd.AddCommand(NewCmdCreateDataSource(client))
+	rootCmd.AddCommand(NewCmdListDataSourcesTypes(client))
 	rootCmd.AddCommand(NewCmdGetDataSource(client))
+	rootCmd.AddCommand(NewCmdUpdateDataSource(client))
+	rootCmd.AddCommand(NewCmdDeleteDataSource(client))
 	rootCmd.AddCommand(NewCmdGetDataSourceSchema(client))
+	rootCmd.AddCommand(NewCmdPauseDataSource(client))
+	rootCmd.AddCommand(NewCmdUnpauseDataSource(client))
+	rootCmd.AddCommand(NewCmdTestDataSource(client))
 
 	// destinations
 	rootCmd.AddCommand(NewCmdListDestinations(client))
