@@ -1,19 +1,20 @@
-## redash list-dashboard-favorites
+## redash delete-data-source
 
-list-dashboard-favorites
+delete-data-source
 
 ### Synopsis
 
-Get DashboardFavoriteList
+DeleteDataSource
 
 ```
-redash list-dashboard-favorites [flags]
+redash delete-data-source [flags]
 ```
 
 ### Options
 
 ```
-  -h, --help   help for list-dashboard-favorites
+      --data-source-id int   DataSource id
+  -h, --help                 help for delete-data-source
 ```
 
 ### Options inherited from parent commands

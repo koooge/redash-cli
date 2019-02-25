@@ -1,19 +1,20 @@
-## redash list-dashboard-favorites
+## redash test-data-source
 
-list-dashboard-favorites
+test-data-source
 
 ### Synopsis
 
-Get DashboardFavoriteList
+TestDataSource
 
 ```
-redash list-dashboard-favorites [flags]
+redash test-data-source [flags]
 ```
 
 ### Options
 
 ```
-  -h, --help   help for list-dashboard-favorites
+      --data-source-id int   DataSource id
+  -h, --help                 help for test-data-source
 ```
 
 ### Options inherited from parent commands

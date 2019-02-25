@@ -1,19 +1,22 @@
-## redash list-dashboard-favorites
+## redash create-data-source
 
-list-dashboard-favorites
+create-data-source
 
 ### Synopsis
 
-Get DashboardFavoriteList
+CreateDataSource
 
 ```
-redash list-dashboard-favorites [flags]
+redash create-data-source [flags]
 ```
 
 ### Options
 
 ```
-  -h, --help   help for list-dashboard-favorites
+      --dbname string   Dbname
+  -h, --help            help for create-data-source
+      --name string     Name
+      --type string     Type
 ```
 
 ### Options inherited from parent commands

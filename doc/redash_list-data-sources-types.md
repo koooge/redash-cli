@@ -1,19 +1,19 @@
-## redash list-dashboard-favorites
+## redash list-data-sources-types
 
-list-dashboard-favorites
+list-data-sources-types
 
 ### Synopsis
 
-Get DashboardFavoriteList
+ListDataSourcesTypes
 
 ```
-redash list-dashboard-favorites [flags]
+redash list-data-sources-types [flags]
 ```
 
 ### Options
 
 ```
-  -h, --help   help for list-dashboard-favorites
+  -h, --help   help for list-data-sources-types
 ```
 
 ### Options inherited from parent commands

@@ -1,19 +1,20 @@
-## redash list-dashboard-favorites
+## redash unpause-data-source
 
-list-dashboard-favorites
+unpause-data-source
 
 ### Synopsis
 
-Get DashboardFavoriteList
+UnpauseDataSource
 
 ```
-redash list-dashboard-favorites [flags]
+redash unpause-data-source [flags]
 ```
 
 ### Options
 
 ```
-  -h, --help   help for list-dashboard-favorites
+      --data-source-id int   DataSource id
+  -h, --help                 help for unpause-data-source
 ```
 
 ### Options inherited from parent commands

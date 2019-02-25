@@ -1,19 +1,23 @@
-## redash list-dashboard-favorites
+## redash update-data-source
 
-list-dashboard-favorites
+update-data-source
 
 ### Synopsis
 
-Get DashboardFavoriteList
+UpdateDataSource
 
 ```
-redash list-dashboard-favorites [flags]
+redash update-data-source [flags]
 ```
 
 ### Options
 
 ```
-  -h, --help   help for list-dashboard-favorites
+      --data-source-id int   DataSource id
+      --dbname string        Db name
+  -h, --help                 help for update-data-source
+      --name string          Name
+      --type string          Type
 ```
 
 ### Options inherited from parent commands
