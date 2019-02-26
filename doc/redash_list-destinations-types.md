@@ -1,20 +1,19 @@
-## redash get-query-snippet
+## redash list-destinations-types
 
-get-query-snippet
+list-destinations-types
 
 ### Synopsis
 
-Get QuerySnippet
+ListDestinationsType
 
 ```
-redash get-query-snippet [flags]
+redash list-destinations-types [flags]
 ```
 
 ### Options
 
 ```
-  -h, --help                   help for get-query-snippet
-      --query-snippet-id int   QuerySnippet id
+  -h, --help   help for list-destinations-types
 ```
 
 ### Options inherited from parent commands

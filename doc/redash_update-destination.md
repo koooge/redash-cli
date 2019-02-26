@@ -1,20 +1,23 @@
-## redash get-query-snippet
+## redash update-destination
 
-get-query-snippet
+update-destination
 
 ### Synopsis
 
-Get QuerySnippet
+UpdateDestination
 
 ```
-redash get-query-snippet [flags]
+redash update-destination [flags]
 ```
 
 ### Options
 
 ```
-  -h, --help                   help for get-query-snippet
-      --query-snippet-id int   QuerySnippet id
+      --addresses string     Addresses
+      --destination-id int   Destination id
+  -h, --help                 help for update-destination
+      --name string          Name
+      --type string          Type
 ```
 
 ### Options inherited from parent commands

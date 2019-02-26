@@ -1,20 +1,20 @@
-## redash get-query-snippet
+## redash delete-destination
 
-get-query-snippet
+delete-destination
 
 ### Synopsis
 
-Get QuerySnippet
+DeleteDestination
 
 ```
-redash get-query-snippet [flags]
+redash delete-destination [flags]
 ```
 
 ### Options
 
 ```
-  -h, --help                   help for get-query-snippet
-      --query-snippet-id int   QuerySnippet id
+      --destination-id int   Destination id
+  -h, --help                 help for delete-destination
 ```
 
 ### Options inherited from parent commands
