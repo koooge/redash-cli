@@ -78,7 +78,7 @@ func init() {
 	// destinations
 	rootCmd.AddCommand(NewCmdListDestinations(client))
 	rootCmd.AddCommand(NewCmdGetDestination(client))
-	rootCmd.AddCommand(NewCmdListDestinationTypes(client))
+	rootCmd.AddCommand(NewCmdListDestinationsTypes(client))
 
 	// queries
 	rootCmd.AddCommand(NewCmdListQueries(client))

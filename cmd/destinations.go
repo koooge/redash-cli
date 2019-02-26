@@ -44,14 +44,14 @@ func NewCmdGetDestination(c redash.IClient) *cobra.Command {
 	return cmd
 }
 
-func NewCmdListDestinationTypes(c redash.IClient) *cobra.Command {
+func NewCmdListDestinationsTypes(c redash.IClient) *cobra.Command {
 	var cmd = &cobra.Command{
-		Use:   "list-destination-types",
-		Short: "list-destination-types",
-		Long:  `Get DestinationTypeList`,
+		Use:   "list-destinations-types",
+		Short: "list-destinations-types",
+		Long:  `Get DestinationsTypeList`,
 		RunE: func(cmd *cobra.Command, args []string) error {
-			input := &redash.ListDestinationTypesInput{}
-			output := c.ListDestinationTypes(input)
+			input := &redash.ListDestinationsTypesInput{}
+			output := c.ListDestinationsTypes(input)
 			cmd.Println(output.Body)
 
 			return nil

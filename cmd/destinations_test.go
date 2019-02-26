@@ -72,25 +72,25 @@ func TestNewCmdGetDestination(t *testing.T) {
 	}
 }
 
-const listDestinationTypesResBody = `[{"something":"something"}]`
+const listDestinationsTypesResBody = `[{"something":"something"}]`
 
-func (c *destinationsClient) ListDestinationTypes(_ *redash.ListDestinationTypesInput) *redash.ListDestinationTypesOutput {
-	return &redash.ListDestinationTypesOutput{StatusCode: 200, Body: listDestinationTypesResBody}
+func (c *destinationsClient) ListDestinationsTypes(_ *redash.ListDestinationsTypesInput) *redash.ListDestinationsTypesOutput {
+	return &redash.ListDestinationsTypesOutput{StatusCode: 200, Body: listDestinationsTypesResBody}
 }
 
-func TestNewCmdListDestinationTypes(t *testing.T) {
+func TestNewCmdListDestinationsTypes(t *testing.T) {
 	testClient := &destinationsClient{}
 
 	testCases := []struct {
 		args []string
 		want string
 	}{
-		{args: []string{}, want: listDestinationTypesResBody},
+		{args: []string{}, want: listDestinationsTypesResBody},
 	}
 
 	for _, c := range testCases {
 		buf := new(bytes.Buffer)
-		cmd := NewCmdListDestinationTypes(testClient)
+		cmd := NewCmdListDestinationsTypes(testClient)
 		cmd.SetOutput(buf)
 		cmd.SetArgs(c.args)
 		cmd.Execute()
